@@ -1,0 +1,166 @@
+---
+// src/components/Footer.astro
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-carbon text-crema">
+
+  <!-- Main footer -->
+  <div class="container-brand py-16 md:py-20">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+
+      <!-- Brand -->
+      <div class="lg:col-span-2">
+        <!-- Logo -->
+        <a href="/" class="inline-flex items-center gap-3 mb-6 group">
+          <svg width="32" height="36" viewBox="0 0 36 40" fill="none" class="text-lavanda-light group-hover:text-lavanda transition-colors">
+            <line x1="0" y1="22" x2="36" y2="22" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="9"  y1="22" x2="9"  y2="8"  stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="9"  cy="7"  r="1.5" fill="currentColor"/>
+            <circle cx="6"  cy="10" r="1.2" fill="currentColor"/>
+            <circle cx="12" cy="10" r="1.2" fill="currentColor"/>
+            <circle cx="7"  cy="14" r="1.2" fill="currentColor"/>
+            <circle cx="11" cy="14" r="1.2" fill="currentColor"/>
+            <line x1="18" y1="22" x2="18" y2="5"  stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="18" cy="4"  r="1.5" fill="currentColor"/>
+            <circle cx="15" cy="7"  r="1.2" fill="currentColor"/>
+            <circle cx="21" cy="7"  r="1.2" fill="currentColor"/>
+            <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
+            <circle cx="20" cy="11" r="1.2" fill="currentColor"/>
+            <circle cx="17" cy="15" r="1.2" fill="currentColor"/>
+            <circle cx="19" cy="15" r="1.2" fill="currentColor"/>
+            <line x1="27" y1="22" x2="27" y2="8"  stroke="currentColor" stroke-width="1.2"/>
+            <circle cx="27" cy="7"  r="1.5" fill="currentColor"/>
+            <circle cx="24" cy="10" r="1.2" fill="currentColor"/>
+            <circle cx="30" cy="10" r="1.2" fill="currentColor"/>
+            <circle cx="25" cy="14" r="1.2" fill="currentColor"/>
+            <circle cx="29" cy="14" r="1.2" fill="currentColor"/>
+          </svg>
+          <div>
+            <span class="block font-serif font-bold text-xl text-crema">Arenillas</span>
+            <span class="block font-sans text-[9px] tracking-[0.3em] uppercase text-lavanda-light">Soria · Castilla y León</span>
+          </div>
+        </a>
+
+        <p class="font-serif italic text-lg text-lavanda-light mb-4 leading-relaxed">
+          "La esencia que resiste."
+        </p>
+        <p class="font-sans text-sm text-crema/50 leading-relaxed max-w-sm">
+          Un pueblo auténtico donde el espliego marca el tiempo y la comunidad
+          sigue siendo el activo más valioso.
+        </p>
+
+        <!-- Social links -->
+        <div class="flex gap-4 mt-8">
+          <a href="https://instagram.com/arenillas.soria" target="_blank" rel="noopener noreferrer"
+             class="w-10 h-10 rounded-full border border-crema/20 flex items-center justify-center
+                    text-crema/50 hover:border-lavanda hover:text-lavanda transition-all duration-300"
+             aria-label="Instagram de Arenillas">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            </svg>
+          </a>
+          <a href="https://facebook.com/arenillassoria" target="_blank" rel="noopener noreferrer"
+             class="w-10 h-10 rounded-full border border-crema/20 flex items-center justify-center
+                    text-crema/50 hover:border-lavanda hover:text-lavanda transition-all duration-300"
+             aria-label="Facebook de Arenillas">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Links: El pueblo -->
+      <div>
+        <h3 class="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-lavanda mb-6">
+          El pueblo
+        </h3>
+        <ul class="space-y-3">
+          {[
+            { href: '/el-pueblo', label: 'Historia' },
+            { href: '/el-pueblo#arquitectura', label: 'Arquitectura' },
+            { href: '/el-pueblo#comunidad', label: 'Comunidad' },
+            { href: '/turismo', label: 'Turismo' },
+            { href: '/turismo#rutas', label: 'Rutas y senderismo' },
+            { href: '/galeria', label: 'Galería fotográfica' },
+          ].map(link => (
+            <li>
+              <a href={link.href}
+                 class="font-sans text-sm text-crema/60 hover:text-lavanda-light transition-colors duration-200">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Links: Información -->
+      <div>
+        <h3 class="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-lavanda mb-6">
+          Información
+        </h3>
+        <ul class="space-y-3 mb-8">
+          {[
+            { href: '/boina-fest', label: 'Boina Fest' },
+            { href: '/contacto', label: 'Contacto' },
+            { href: 'https://arenillas.sedelectronica.es', label: 'Sede electrónica', ext: true },
+            { href: 'https://dipsoria.es', label: 'Diputación de Soria', ext: true },
+          ].map(link => (
+            <li>
+              <a href={link.href}
+                 target={link.ext ? '_blank' : undefined}
+                 rel={link.ext ? 'noopener noreferrer' : undefined}
+                 class="font-sans text-sm text-crema/60 hover:text-lavanda-light transition-colors duration-200 inline-flex items-center gap-1">
+                {link.label}
+                {link.ext && (
+                  <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M1 9L9 1M4 1h5v5"/>
+                  </svg>
+                )}
+              </a>
+            </li>
+          ))}
+        </ul>
+
+        <!-- Contact info -->
+        <div class="space-y-2 pt-6 border-t border-crema/10">
+          <p class="font-sans text-xs text-crema/40">C/ Real, s/n · 42368 Arenillas (Soria)</p>
+          <a href="tel:+34975099222" class="font-sans text-xs text-crema/40 hover:text-lavanda-light transition-colors block">
+            975 099 222
+          </a>
+          <a href="mailto:ayuntamiento@arenillas.es" class="font-sans text-xs text-crema/40 hover:text-lavanda-light transition-colors block">
+            ayuntamiento@arenillas.es
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="border-t border-crema/10">
+    <div class="container-brand py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="font-sans text-xs text-crema/30">
+        © {year} Ayuntamiento de Arenillas · Soria
+      </p>
+      <nav aria-label="Enlaces legales">
+        <ul class="flex flex-wrap gap-4 sm:gap-6" role="list">
+          {[
+            { href: '/aviso-legal',        label: 'Aviso legal' },
+            { href: '/proteccion-datos',   label: 'Protección de datos' },
+            { href: '/politica-cookies',   label: 'Cookies' },
+          ].map(link => (
+            <li>
+              <a href={link.href}
+                 class="font-sans text-xs text-crema/30 hover:text-crema/60 transition-colors">
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,160 @@
+---
+import { imageLibrary } from "../data/images.js";
+// src/components/BoinaFest.astro
+---
+
+<section
+  class="relative section bg-carbon overflow-hidden"
+  aria-labelledby="boinafest-heading"
+>
+  <!-- Tierra accent top -->
+  <div
+    class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-tierra-dark via-tierra to-transparent"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="container-brand">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Text content -->
+      <div class="order-2 lg:order-1">
+        <div class="reveal">
+          <span class="tag tag-tierra mb-6 inline-block">Festival · Agosto</span
+          >
+          <h2
+            id="boinafest-heading"
+            class="font-serif font-bold text-crema mb-2"
+            style="font-size: clamp(2.5rem, 6vw, 4rem); line-height: 1.1;"
+          >
+            Boina Fest
+          </h2>
+          <p class="font-serif italic text-tierra-light text-xl mb-8">
+            Música, pueblo, vida real.
+          </p>
+        </div>
+
+        <div
+          class="space-y-4 font-sans text-base text-crema/70 leading-relaxed mb-10 reveal reveal-delay-1"
+        >
+          <p>
+            El Boina Fest es algo más que un festival de música. Es la prueba de
+            que Arenillas está vivo, de que su comunidad tiene energía y de que
+            los pueblos pequeños pueden generar cultura grande.
+          </p>
+          <p>
+            Cada agosto, artistas de distintos estilos llegan a tocar bajo el
+            cielo soriano. Los vecinos, los visitantes y la música comparten el
+            mismo espacio: una plaza, una comunidad, una noche que no se olvida.
+          </p>
+          <p>El festival nació del orgullo local y sigue creciendo con él.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-4 reveal reveal-delay-2">
+          <a
+            href="/boina-fest"
+            class="btn-primary bg-tierra hover:bg-tierra-dark"
+          >
+            Descubre el festival
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"></path>
+            </svg>
+          </a>
+          <a
+            href="/boina-fest#agenda"
+            class="btn-outline border-crema/30 text-crema hover:bg-crema hover:text-carbon"
+          >
+            Ver programa
+          </a>
+        </div>
+
+        <!-- Stats -->
+        <div
+          class="grid grid-cols-3 gap-6 mt-14 pt-10 border-t border-crema/10 reveal reveal-delay-3"
+        >
+          {
+            [
+              { num: "8ª", label: "Edición" },
+              { num: "+500", label: "Asistentes" },
+              { num: "3", label: "Días de música" },
+            ].map((stat) => (
+              <div>
+                <p class="font-serif font-bold text-3xl text-tierra-light">
+                  {stat.num}
+                </p>
+                <p class="font-sans text-xs tracking-wider uppercase text-crema/40 mt-1">
+                  {stat.label}
+                </p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Image / Visual -->
+      <div class="order-1 lg:order-2 reveal reveal-delay-1">
+        <div class="relative">
+          <!-- Main image -->
+          <div class="aspect-square rounded-2xl overflow-hidden bg-grafito">
+            <img
+              src={imageLibrary.boinaFest2Featured.src}
+              alt="Boina Fest — Festival de música en Arenillas, Soria"
+              class="w-full h-full object-cover opacity-90"
+              loading="lazy"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-carbon/60 to-transparent"
+            >
+            </div>
+          </div>
+
+          <!-- Floating badge -->
+          <div
+            class="absolute -top-5 -right-5 md:-top-8 md:-right-8
+                      bg-tierra rounded-full w-24 h-24 md:w-32 md:h-32
+                      flex flex-col items-center justify-center shadow-xl
+                      rotate-12 hover:rotate-0 transition-transform duration-500"
+          >
+            <p
+              class="font-serif font-bold text-crema text-2xl md:text-3xl leading-none"
+            >
+              Ago.
+            </p>
+            <p
+              class="font-sans text-[9px] tracking-[0.2em] uppercase text-crema/70 mt-1"
+            >
+              Cada año
+            </p>
+          </div>
+
+          <!-- Bottom tag -->
+          <div
+            class="absolute bottom-6 left-6 right-6 bg-carbon/80 backdrop-blur-sm rounded-xl p-4"
+          >
+            <p
+              class="font-sans text-xs tracking-wider uppercase text-tierra mb-1"
+            >
+              Próxima edición
+            </p>
+            <p class="font-serif text-crema text-lg font-bold">
+              Boina Fest 2025
+            </p>
+            <p class="font-sans text-crema/60 text-sm">
+              Arenillas, Soria · Agosto 2025
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

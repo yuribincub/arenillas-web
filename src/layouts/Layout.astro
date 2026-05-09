@@ -1,0 +1,77 @@
+---
+// src/layouts/Layout.astro
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+}
+
+const {
+  title = 'Arenillas · Soria',
+  description = 'Un pueblo auténtico de Castilla. La esencia que resiste.',
+  image = '/og-arenillas.jpg',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalURL} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Arenillas, Soria, Castilla y León, turismo rural, espliego, lavanda, Boina Fest, pueblo auténtico" />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonicalURL} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image"       content={image} />
+    <meta property="og:locale"      content="es_ES" />
+    <meta property="og:site_name"   content="Arenillas · Soria" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image"       content={image} />
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#5C4E78" />
+  </head>
+
+  <body class="bg-crema antialiased">
+    <Nav />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+
+    <!-- Reveal on scroll -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+  </body>
+</html>

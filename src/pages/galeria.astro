@@ -1,0 +1,205 @@
+---
+// src/pages/galeria.astro
+import Layout from '../layouts/Layout.astro';
+
+// Añadir las imágenes reales en public/images/galeria/
+const fotos = [
+  { src: '/images/galeria/gal-01.jpg', alt: 'Amanecer sobre los campos de Arenillas', cat: 'Paisaje', wide: true },
+  { src: '/images/galeria/gal-02.jpg', alt: 'Espiga de espliego en flor',             cat: 'Naturaleza' },
+  { src: '/images/galeria/gal-03.jpg', alt: 'Fachada de piedra con puerta de madera', cat: 'Arquitectura' },
+  { src: '/images/galeria/gal-04.jpg', alt: 'Panorámica del pueblo al atardecer',     cat: 'Paisaje', tall: true },
+  { src: '/images/galeria/gal-05.jpg', alt: 'Campo de lavanda en la hora dorada',     cat: 'Naturaleza' },
+  { src: '/images/galeria/gal-06.jpg', alt: 'Detalle de la iglesia parroquial',       cat: 'Arquitectura' },
+  { src: '/images/galeria/gal-07.jpg', alt: 'Escena del Boina Fest',                  cat: 'Festival', wide: true },
+  { src: '/images/galeria/gal-08.jpg', alt: 'Camino entre campos al amanecer',        cat: 'Paisaje' },
+  { src: '/images/galeria/gal-09.jpg', alt: 'Plaza principal con vecinos',            cat: 'Comunidad' },
+  { src: '/images/galeria/gal-10.jpg', alt: 'Horizonte soriano despejado',            cat: 'Paisaje' },
+  { src: '/images/galeria/gal-11.jpg', alt: 'Destilación de espliego',               cat: 'Tradición' },
+  { src: '/images/galeria/gal-12.jpg', alt: 'Atardecer desde el mirador',            cat: 'Paisaje' },
+];
+
+const categorias = ['Todas', ...new Set(fotos.map(f => f.cat))];
+---
+
+<Layout
+  title="Galería · Arenillas, Soria — Imágenes del pueblo"
+  description="Fotografías de Arenillas, Soria. Paisajes, espliego, arquitectura de piedra, el Boina Fest y la vida del pueblo. Un viaje visual a Castilla y León."
+>
+
+  <!-- Header -->
+  <section class="section-sm bg-crema border-b border-lavanda-light/30">
+    <div class="container-brand">
+      <div class="max-w-2xl reveal">
+        <p class="section-label mb-4">Visual</p>
+        <h1 class="text-heading text-carbon mb-4">Galería fotográfica</h1>
+        <p class="text-lead">
+          Imágenes que muestran Arenillas tal como es: sin filtros, sin artificios.
+          Solo luz, piedra, espliego y personas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filtros -->
+  <div class="sticky top-16 md:top-20 z-30 bg-crema/95 backdrop-blur-md border-b border-grisclaro/50 py-3">
+    <div class="container-brand">
+      <nav aria-label="Filtrar galería por categoría">
+        <ul class="flex gap-2 overflow-x-auto pb-1 hide-scrollbar" role="list" id="filtros">
+          {categorias.map((cat, i) => (
+            <li>
+              <button
+                data-cat={cat}
+                class:list={[
+                  'filtro-btn whitespace-nowrap px-4 py-2 rounded-full font-sans text-sm font-medium transition-all duration-200',
+                  i === 0
+                    ? 'bg-lavanda-deep text-crema'
+                    : 'bg-lavanda-pale text-lavanda-deep hover:bg-lavanda-light'
+                ]}
+              >
+                {cat}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Grid de fotos -->
+  <section class="section-sm bg-crema" aria-label="Galería de imágenes">
+    <div class="container-brand">
+      <div class="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-4 space-y-4" id="galeria-grid">
+        {fotos.map((foto, i) => (
+          <figure
+            class="break-inside-avoid galeria-item cursor-pointer group rounded-xl overflow-hidden
+                   bg-lavanda-pale relative reveal"
+            data-cat={foto.cat}
+            style={`animation-delay: ${i * 0.05}s`}
+            tabindex="0"
+            role="button"
+            aria-label={`Ver imagen: ${foto.alt}`}
+          >
+            <img
+              src={foto.src}
+              alt={foto.alt}
+              class="w-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <!-- Overlay on hover -->
+            <figcaption
+              class="absolute inset-0 bg-gradient-to-t from-carbon/80 to-transparent
+                     opacity-0 group-hover:opacity-100 transition-opacity duration-300
+                     flex flex-col justify-end p-4">
+              <span class="tag tag-lavanda mb-2 self-start">{foto.cat}</span>
+              <p class="font-serif italic text-crema text-sm leading-snug">{foto.alt}</p>
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <!-- Indicador vacío -->
+      <p id="sin-resultados" class="hidden text-center font-serif italic text-humo py-20">
+        No hay fotos en esta categoría todavía.
+      </p>
+    </div>
+  </section>
+
+  <!-- Lightbox modal -->
+  <div id="lightbox" class="fixed inset-0 z-50 bg-carbon/95 backdrop-blur-sm hidden items-center justify-center p-4"
+       role="dialog" aria-modal="true" aria-label="Visor de imagen">
+    <button id="lightbox-close" class="absolute top-6 right-6 text-crema/70 hover:text-crema transition-colors"
+            aria-label="Cerrar visor">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M4 4L24 24M24 4L4 24"/>
+      </svg>
+    </button>
+    <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[85vh] rounded-xl object-contain"/>
+    <p id="lightbox-caption" class="absolute bottom-8 left-0 right-0 text-center font-serif italic text-crema/70 text-sm px-8"></p>
+  </div>
+
+  <!-- CTA compartir -->
+  <section class="section-sm bg-lavanda-deep text-crema">
+    <div class="container-brand text-center">
+      <h2 class="font-serif font-bold text-2xl text-crema mb-3 reveal">
+        ¿Tienes fotos de Arenillas?
+      </h2>
+      <p class="font-sans text-crema/70 mb-6 reveal reveal-delay-1">
+        Compártelas con nosotros en Instagram con el hashtag
+        <strong class="text-lavanda-light">#Arenillas</strong> o escríbenos.
+      </p>
+      <a href="https://instagram.com/arenillas.soria" target="_blank" rel="noopener noreferrer"
+         class="btn-primary bg-crema text-lavanda-deep hover:bg-lavanda-light reveal reveal-delay-2">
+        @arenillas.soria
+      </a>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // ── Filtrado de categorías ──────────────────────────────
+  const botones = document.querySelectorAll<HTMLButtonElement>('.filtro-btn');
+  const items   = document.querySelectorAll<HTMLElement>('.galeria-item');
+  const sinRes  = document.getElementById('sin-resultados')!;
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat!;
+
+      // Actualizar estilos de botón activo
+      botones.forEach(b => {
+        b.classList.replace('bg-lavanda-deep', 'bg-lavanda-pale');
+        b.classList.replace('text-crema', 'text-lavanda-deep');
+      });
+      btn.classList.replace('bg-lavanda-pale', 'bg-lavanda-deep');
+      btn.classList.replace('text-lavanda-deep', 'text-crema');
+
+      // Filtrar items
+      let visibles = 0;
+      items.forEach(item => {
+        const show = cat === 'Todas' || item.dataset.cat === cat;
+        item.style.display = show ? '' : 'none';
+        if (show) visibles++;
+      });
+      sinRes.classList.toggle('hidden', visibles > 0);
+    });
+  });
+
+  // ── Lightbox ────────────────────────────────────────────
+  const lightbox = document.getElementById('lightbox')!;
+  const lbImg    = document.getElementById('lightbox-img') as HTMLImageElement;
+  const lbCap    = document.getElementById('lightbox-caption')!;
+  const lbClose  = document.getElementById('lightbox-close')!;
+
+  function openLightbox(src: string, alt: string) {
+    lbImg.src = src;
+    lbImg.alt = alt;
+    lbCap.textContent = alt;
+    lightbox.classList.remove('hidden');
+    lightbox.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.add('hidden');
+    lightbox.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  items.forEach(item => {
+    const img = item.querySelector('img')!;
+    item.addEventListener('click', () => openLightbox(img.src, img.alt));
+    item.addEventListener('keydown', (e: KeyboardEvent) => {
+      if (e.key === 'Enter' || e.key === ' ') openLightbox(img.src, img.alt);
+    });
+  });
+
+  lbClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
+</script>
+
+<style>
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>

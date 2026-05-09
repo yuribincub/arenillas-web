@@ -1,0 +1,192 @@
+---
+// src/components/AccesosRapidos.astro
+// Accesos rápidos para vecinos — integrado en el universo visual de marca.
+// No es un dashboard. Es un barrio de la web.
+
+const accesos = [
+    {
+        href: "/servicios#ayuntamiento",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="9" width="18" height="12" rx="1"/>
+      <path d="M3 9L12 3l9 6"/>
+      <rect x="9" y="13" width="6" height="8"/>
+    </svg>`,
+        label: "Ayuntamiento",
+        desc: "Trámites y gestión",
+        color: "lavanda",
+        badge: null,
+    },
+    {
+        href: "/actualidad",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2"/>
+      <path d="M2 13h10M2 17h10M2 9h4"/>
+    </svg>`,
+        label: "Actualidad",
+        desc: "Noticias y bandos",
+        color: "tierra",
+        badge: "Nuevo",
+    },
+    {
+        href: "/agenda",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2"/>
+      <line x1="16" y1="2" x2="16" y2="6"/>
+      <line x1="8" y1="2" x2="8" y2="6"/>
+      <line x1="3" y1="10" x2="21" y2="10"/>
+      <circle cx="8" cy="15" r="1" fill="currentColor"/>
+      <circle cx="12" cy="15" r="1" fill="currentColor"/>
+      <circle cx="16" cy="15" r="1" fill="currentColor"/>
+    </svg>`,
+        label: "Agenda",
+        desc: "Eventos y actividades",
+        color: "musgo",
+        badge: null,
+    },
+    {
+        href: "/servicios#sanitario",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+    </svg>`,
+        label: "Consultorio",
+        desc: "Salud y farmacia",
+        color: "lavanda",
+        badge: null,
+    },
+    {
+        href: "/servicios#transporte",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="1" y="6" width="22" height="12" rx="3"/>
+      <path d="M1 10h22"/>
+      <circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>
+      <path d="M7 10v2M17 10v2"/>
+    </svg>`,
+        label: "Transporte",
+        desc: "Horarios de autobús",
+        color: "tierra",
+        badge: null,
+    },
+    {
+        href: "/negocios",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <path d="M9 22V12h6v10"/>
+    </svg>`,
+        label: "Negocios locales",
+        desc: "Bares, tiendas y más",
+        color: "musgo",
+        badge: null,
+    },
+    {
+        href: "/servicios#incidencias",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+      <line x1="12" y1="9" x2="12" y2="13"/>
+      <line x1="12" y1="17" x2="12.01" y2="17"/>
+    </svg>`,
+        label: "Incidencias",
+        desc: "Avisos y urgencias",
+        color: "tierra",
+        badge: null,
+    },
+    {
+        href: "/servicios#telefonos",
+        icon: `<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 11.63 19 19.45 19.45 0 0 1 5 12.38 19.79 19.79 0 0 1 2.12 3.19 2 2 0 0 1 4.11 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+    </svg>`,
+        label: "Teléfonos útiles",
+        desc: "Directorio rápido",
+        color: "lavanda",
+        badge: null,
+    },
+];
+
+const colorMap: Record<string, string> = {
+    lavanda:
+        "bg-lavanda-pale text-lavanda-deep hover:bg-lavanda-light/60 hover:border-lavanda",
+    tierra: "bg-tierra-arena/60 text-tierra-dark hover:bg-tierra-arena hover:border-tierra-light",
+    musgo: "bg-musgo/8 text-musgo hover:bg-musgo/15 hover:border-musgo/40",
+};
+
+const iconBg: Record<string, string> = {
+    lavanda: "bg-lavanda-pale/80 text-lavanda-deep",
+    tierra: "bg-tierra-arena text-tierra-dark",
+    musgo: "bg-musgo/10 text-musgo",
+};
+---
+
+<section
+    class="relative -mt-8 z-20 section-sm"
+    aria-labelledby="accesos-heading"
+>
+    <div class="container-brand">
+        <!-- Header inline — pequeño y discreto -->
+        <div class="flex items-center justify-between mb-6 reveal">
+            <div class="flex items-center gap-3">
+                <span class="block w-6 h-px bg-lavanda-deep"></span>
+                <h2
+                    id="accesos-heading"
+                    class="font-sans text-xs font-semibold tracking-[0.25em] uppercase text-lavanda-deep"
+                >
+                    Accesos rápidos · Vecinos y residentes
+                </h2>
+            </div>
+            <a
+                href="/servicios"
+                class="font-sans text-xs text-humo hover:text-lavanda-deep transition-colors hidden sm:block"
+            >
+                Todos los servicios →
+            </a>
+        </div>
+
+        <!-- Grid de accesos -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2.5">
+            {
+                accesos.map((item, i) => (
+                    <a
+                        href={item.href}
+                        class:list={[
+                            "reveal group relative flex flex-col items-center gap-2.5 p-4 rounded-2xl border transition-all duration-300",
+                            "text-center focus-visible:ring-2 focus-visible:ring-lavanda-deep",
+                            colorMap[item.color],
+                            `border-transparent`,
+                            i < 4
+                                ? `reveal-delay-${i}`
+                                : `reveal-delay-${i - 4}`,
+                        ]}
+                    >
+                        {/* Badge */}
+                        {item.badge && (
+                            <span
+                                class="absolute -top-2 -right-2 bg-tierra text-crema font-sans text-[9px] font-semibold
+                         tracking-wider uppercase px-2 py-0.5 rounded-full shadow-sm"
+                            >
+                                {item.badge}
+                            </span>
+                        )}
+
+                        {/* Icon */}
+                        <div
+                            class:list={[
+                                "w-11 h-11 rounded-xl flex items-center justify-center shrink-0 transition-all duration-300",
+                                "group-hover:scale-110 group-hover:shadow-sm",
+                                iconBg[item.color],
+                            ]}
+                            set:html={item.icon}
+                        />
+
+                        {/* Label */}
+                        <div>
+                            <p class="font-sans text-xs font-semibold leading-tight">
+                                {item.label}
+                            </p>
+                            <p class="font-sans text-[10px] text-humo mt-0.5 leading-tight hidden sm:block">
+                                {item.desc}
+                            </p>
+                        </div>
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</section>

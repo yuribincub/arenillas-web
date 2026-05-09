@@ -1,0 +1,179 @@
+---
+// src/components/VivireAqui.astro
+// Sección aspiracional para teletrabajadores y potenciales nuevos residentes.
+// Emocional. No institucional.
+
+const razones = [
+    {
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+      <circle cx="9" cy="7" r="4"/>
+      <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+    </svg>`,
+        titulo: "Comunidad real",
+        texto: "Aquí la gente te saluda. Te llama por tu nombre. Está cuando la necesitas. La soledad urbana no existe en Arenillas.",
+    },
+    {
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <rect x="2" y="3" width="20" height="14" rx="2"/>
+      <line x1="8" y1="21" x2="16" y2="21"/>
+      <line x1="12" y1="17" x2="12" y2="21"/>
+    </svg>`,
+        titulo: "Fibra óptica",
+        texto: "Conectividad de alta velocidad para trabajar desde aquí. El teletrabajo y la vida rural no son incompatibles.",
+    },
+    {
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2z"/>
+      <path d="M12 6v6l4 2"/>
+    </svg>`,
+        titulo: "Otro ritmo de vida",
+        texto: "El tiempo aquí no corre. No hay atascos, no hay ruido constante. Solo el ritmo que tú eliges.",
+    },
+    {
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+      <polyline points="9 22 9 12 15 12 15 22"/>
+    </svg>`,
+        titulo: "Coste de vida real",
+        texto: "Una casa con jardín por lo que pagas de alquiler en la ciudad. El precio del metro cuadrado ya no te condiciona.",
+    },
+    {
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </svg>`,
+        titulo: "Naturaleza a diario",
+        texto: "Sales por la puerta y estás en el campo. El espliego, los caminos, el horizonte son tu gimnasio y tu terapia.",
+    },
+    {
+        icon: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+      <circle cx="12" cy="12" r="5"/>
+      <line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+      <line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+    </svg>`,
+        titulo: "Calidad de aire",
+        texto: "A 1.100 metros de altitud y a 100 km de cualquier gran ciudad. El aire aquí tiene otro sabor.",
+    },
+];
+---
+
+<section
+    class="section relative overflow-hidden bg-carbon"
+    aria-labelledby="vivir-heading"
+>
+    <!-- Decorative horizontal lines — like fields -->
+    <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+        {
+            [15, 30, 45, 60, 75, 90].map((pct) => (
+                <div
+                    class="absolute left-0 right-0 h-px bg-crema/5"
+                    style={`top: ${pct}%`}
+                />
+            ))
+        }
+    </div>
+
+    <!-- Lavanda line left -->
+    <div
+        class="absolute left-0 top-0 bottom-0 w-1 bg-lavanda-deep opacity-60"
+        aria-hidden="true"
+    >
+    </div>
+
+    <div class="container-brand relative z-10">
+        <!-- Header -->
+        <div
+            class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end mb-16"
+        >
+            <div class="reveal">
+                <p class="section-label text-lavanda mb-4">¿Y si te quedas?</p>
+                <h2
+                    id="vivir-heading"
+                    class="font-serif font-bold text-crema"
+                    style="font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1;"
+                >
+                    Vivir en Arenillas<br />
+                    <em class="not-italic text-lavanda-light"
+                        >es una elección, no una renuncia</em
+                    >
+                </h2>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <p class="font-sans text-lg text-crema/70 leading-relaxed mb-6">
+                    Cada vez más personas descubren que la vida rural no es un
+                    paso atrás. Es una forma diferente —y a menudo mejor— de
+                    vivir. Arenillas tiene todo lo que necesitas y nada de lo
+                    que no quieres.
+                </p>
+                <a
+                    href="/vivir-aqui"
+                    class="btn-primary bg-lavanda-deep hover:bg-lavanda border-0"
+                >
+                    Descubrir cómo es vivir aquí
+                    <svg
+                        width="16"
+                        height="16"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        aria-hidden="true"
+                    >
+                        <path
+                            d="M3 8h10M9 4l4 4-4 4"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+
+        <!-- Grid razones -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {
+                razones.map((r, i) => (
+                    <div
+                        class:list={[
+                            "reveal group p-6 rounded-2xl border border-crema/10",
+                            "hover:border-lavanda/50 hover:bg-crema/5 transition-all duration-300",
+                            `reveal-delay-${i % 3}`,
+                        ]}
+                    >
+                        <div
+                            class="text-lavanda-light mb-4 group-hover:text-lavanda transition-colors"
+                            set:html={r.icon}
+                        ></div>
+                        <h3 class="font-serif font-bold text-crema text-lg mb-2 group-hover:text-lavanda-light transition-colors">
+                            {r.titulo}
+                        </h3>
+                        <p class="font-sans text-sm text-crema/60 leading-relaxed">
+                            {r.texto}
+                        </p>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Quote final -->
+        <div class="mt-16 pt-10 border-t border-crema/10 reveal">
+            <blockquote class="max-w-2xl">
+                <p
+                    class="font-serif italic text-xl md:text-2xl text-lavanda-light leading-relaxed mb-4"
+                >
+                    "La gente que viene de la ciudad siempre dice lo mismo: 'no
+                    sabía que esto existía todavía'. Y nosotros respondemos:
+                    siempre ha existido. Solo había que venir a verlo."
+                </p>
+                <footer
+                    class="font-sans text-xs tracking-[0.25em] uppercase text-crema/40"
+                >
+                    — Un vecino de Arenillas
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+</section>

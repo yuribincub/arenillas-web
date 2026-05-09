@@ -1,0 +1,115 @@
+---
+import { imageLibrary } from '../data/images.js';
+// src/components/Hero.astro
+---
+
+<section
+  class="relative min-h-[100svh] flex items-end overflow-hidden bg-carbon"
+  aria-labelledby="hero-heading"
+>
+  <!-- Imagen de fondo (reemplazar src con foto real del pueblo) -->
+  <div class="absolute inset-0">
+    <img
+      src={imageLibrary.heroBackground.src}
+      alt={imageLibrary.heroBackground.alt}
+      class="w-full h-full object-cover object-center opacity-75"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <!-- Gradiente multicapa editorial -->
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-carbon/90 via-carbon/40 to-carbon/10"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-gradient-to-r from-carbon/50 to-transparent"
+    >
+    </div>
+  </div>
+
+  <!-- Noise texture overlay -->
+  <div
+    class="absolute inset-0 bg-noise opacity-60 pointer-events-none"
+    aria-hidden="true"
+  >
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 container-brand pb-16 md:pb-24 lg:pb-32 pt-32">
+    <div class="max-w-3xl">
+      <!-- Label -->
+      <p
+        class="section-label text-lavanda-light mb-6 opacity-0 animate-fade-up [animation-delay:0.2s] [animation-fill-mode:forwards]"
+      >
+        Arenillas · Soria · Castilla y León
+      </p>
+
+      <!-- Main heading -->
+      <h1
+        id="hero-heading"
+        class="text-display text-crema mb-6 opacity-0 animate-fade-up [animation-delay:0.4s] [animation-fill-mode:forwards] text-balance"
+      >
+        La esencia<br />
+        <em class="not-italic text-lavanda-light">que resiste.</em>
+      </h1>
+
+      <!-- Lead -->
+      <p
+        class="text-lead text-crema/80 mb-10 max-w-xl opacity-0 animate-fade-up [animation-delay:0.6s] [animation-fill-mode:forwards]"
+      >
+        Un pueblo auténtico de Castilla donde el tiempo tiene otro ritmo, el
+        espliego perfuma el aire y las personas aún se conocen por su nombre.
+      </p>
+
+      <!-- CTAs -->
+      <div
+        class="flex flex-wrap gap-4 opacity-0 animate-fade-up [animation-delay:0.8s] [animation-fill-mode:forwards]"
+      >
+        <a href="/el-pueblo" class="btn-primary">
+          Descubre Arenillas
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+        <a
+          href="/turismo"
+          class="btn-outline border-crema/40 text-crema hover:bg-crema hover:text-carbon"
+        >
+          Planifica tu visita
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-60 z-10"
+    aria-hidden="true"
+  >
+    <span class="font-sans text-[10px] tracking-[0.25em] uppercase text-crema"
+      >Explora</span
+    >
+    <div
+      class="w-px h-12 bg-gradient-to-b from-crema to-transparent animate-pulse"
+    >
+    </div>
+  </div>
+
+  <!-- Año / edición — esquina derecha -->
+  <div
+    class="absolute bottom-8 right-8 md:right-12 z-10 text-right opacity-0 animate-fade-in [animation-delay:1s] [animation-fill-mode:forwards]"
+  >
+    <span class="font-serif italic text-crema/50 text-sm">Est. s. XII</span>
+  </div>
+</section>

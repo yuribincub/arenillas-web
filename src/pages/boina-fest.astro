@@ -1,0 +1,298 @@
+---
+// src/pages/boina-fest.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Boina Fest · Festival de música en Arenillas, Soria"
+    description="El Boina Fest es el festival de música de Arenillas. Cada agosto, artistas en vivo, gastronomía local y comunidad bajo el cielo de Soria. Castilla y León."
+>
+    <!-- Hero oscuro -->
+    <section
+        class="relative min-h-[70vh] flex items-end bg-carbon overflow-hidden"
+    >
+        <div class="absolute inset-0">
+            <img
+                src="/images/boina-fest-hero.jpg"
+                alt="Boina Fest — público y escenario en Arenillas"
+                class="w-full h-full object-cover opacity-50"
+                loading="eager"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-carbon/95 via-carbon/50 to-transparent"
+            >
+            </div>
+        </div>
+        <div class="relative z-10 container-brand pb-16 md:pb-24">
+            <span class="tag tag-tierra mb-6 inline-block"
+                >Festival · Agosto · Arenillas</span
+            >
+            <h1
+                class="font-serif font-bold text-crema mb-4"
+                style="font-size:clamp(3rem,9vw,7rem); line-height:1;"
+            >
+                Boina Fest
+            </h1>
+            <p class="font-serif italic text-2xl text-tierra-light mb-6">
+                Música, pueblo, vida real.
+            </p>
+            <p class="font-sans text-crema/70 max-w-lg leading-relaxed">
+                Un festival que nació del orgullo de un pueblo pequeño y sigue
+                creciendo con el mismo espíritu de siempre.
+            </p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="bg-tierra text-crema py-10" aria-label="Datos del festival">
+        <div class="container-brand">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                {
+                    [
+                        { num: "8ª", label: "Edición 2025" },
+                        { num: "+500", label: "Asistentes" },
+                        { num: "3", label: "Días de música" },
+                        { num: "15+", label: "Artistas" },
+                    ].map((s) => (
+                        <div>
+                            <p class="font-serif font-bold text-4xl md:text-5xl text-crema">
+                                {s.num}
+                            </p>
+                            <p class="font-sans text-xs tracking-[0.2em] uppercase text-crema/60 mt-2">
+                                {s.label}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Historia del festival -->
+    <section class="section bg-crema" aria-labelledby="historia-fest-heading">
+        <div class="container-brand">
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+            >
+                <div class="reveal">
+                    <p class="section-label mb-4">Historia</p>
+                    <h2
+                        id="historia-fest-heading"
+                        class="text-heading text-carbon mb-6"
+                    >
+                        Un festival nacido<br />del orgullo local
+                    </h2>
+                    <div
+                        class="space-y-4 font-sans text-humo leading-relaxed mb-8"
+                    >
+                        <p>
+                            El Boina Fest nació como respuesta a una pregunta
+                            sencilla: ¿por qué los pueblos pequeños no pueden
+                            tener cultura grande? La respuesta fue crear un
+                            festival donde la música, la gastronomía local y el
+                            espíritu de Arenillas convivieran con naturalidad.
+                        </p>
+                        <p>
+                            Desde su primera edición, el festival ha crecido
+                            manteniendo su esencia: un evento humano, auténtico,
+                            donde el escenario es el pueblo entero y el público
+                            es parte del espectáculo.
+                        </p>
+                        <p>
+                            Hoy, el Boina Fest es uno de los eventos culturales
+                            de referencia en la comarca de Tierras Altas y una
+                            razón más para venir a Arenillas.
+                        </p>
+                    </div>
+                    <a href="/contacto?asunto=boina-fest" class="btn-primary">
+                        Información y entradas
+                    </a>
+                </div>
+                <div class="reveal reveal-delay-2 grid grid-cols-2 gap-4">
+                    <div
+                        class="aspect-square rounded-2xl overflow-hidden bg-carbon"
+                    >
+                        <img
+                            src="/images/boina-01.jpg"
+                            alt="Escenario del Boina Fest en Arenillas"
+                            class="w-full h-full object-cover opacity-90"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div
+                        class="aspect-square rounded-2xl overflow-hidden bg-tierra-arena mt-8"
+                    >
+                        <img
+                            src="/images/boina-02.jpg"
+                            alt="Público en el Boina Fest"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                    <div
+                        class="col-span-2 aspect-video rounded-2xl overflow-hidden bg-lavanda-pale"
+                    >
+                        <img
+                            src="/images/boina-03.jpg"
+                            alt="Momento del Boina Fest al atardecer"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programa / Agenda -->
+    <section
+        class="section bg-carbon text-crema"
+        id="agenda"
+        aria-labelledby="programa-heading"
+    >
+        <div class="container-brand">
+            <div class="max-w-xl mb-12 reveal">
+                <p class="section-label text-tierra mb-4">Edición 2025</p>
+                <h2 id="programa-heading" class="text-heading text-crema">
+                    Programa del festival
+                </h2>
+                <p class="font-sans text-crema/60 mt-4">
+                    El programa completo se anunciará próximamente. Síguenos en
+                    redes para estar al día.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {
+                    [
+                        {
+                            dia: "Viernes",
+                            fecha: "8 agosto",
+                            titulo: "Apertura",
+                            desc: "Apertura oficial del festival. Música en directo y bienvenida a todos los asistentes.",
+                            hora: "20:00h",
+                        },
+                        {
+                            dia: "Sábado",
+                            fecha: "9 agosto",
+                            titulo: "Noche grande",
+                            desc: "Día principal del festival con los artistas cabeza de cartel y gastronomía local.",
+                            hora: "17:00h",
+                        },
+                        {
+                            dia: "Domingo",
+                            fecha: "10 agosto",
+                            titulo: "Cierre",
+                            desc: "Sesión de cierre con actuaciones acústicas y música hasta el atardecer.",
+                            hora: "12:00h",
+                        },
+                    ].map((day, i) => (
+                        <article
+                            class={`reveal reveal-delay-${i} p-8 rounded-2xl border border-crema/10
+                          hover:border-tierra/60 hover:bg-crema/5 transition-all duration-300`}
+                        >
+                            <p class="font-sans text-xs tracking-[0.25em] uppercase text-tierra mb-2">
+                                {day.dia} · {day.fecha}
+                            </p>
+                            <h3 class="font-serif font-bold text-crema text-2xl mb-3">
+                                {day.titulo}
+                            </h3>
+                            <p class="font-sans text-crema/60 text-sm leading-relaxed mb-4">
+                                {day.desc}
+                            </p>
+                            <p class="font-sans text-xs text-tierra-light">
+                                Desde las {day.hora}
+                            </p>
+                        </article>
+                    ))
+                }
+            </div>
+
+            <!-- Próximas novedades -->
+            <div
+                class="mt-12 p-8 rounded-2xl bg-crema/5 border border-crema/10 reveal"
+            >
+                <div
+                    class="flex flex-col sm:flex-row items-start sm:items-center gap-6 justify-between"
+                >
+                    <div>
+                        <h3
+                            class="font-serif font-bold text-crema text-xl mb-2"
+                        >
+                            ¿Quieres recibir el programa completo?
+                        </h3>
+                        <p class="font-sans text-crema/60 text-sm">
+                            Escríbenos y te avisamos cuando esté disponible.
+                        </p>
+                    </div>
+                    <a
+                        href="/contacto?asunto=boina-fest-programa"
+                        class="btn-primary bg-tierra hover:bg-tierra-dark shrink-0"
+                    >
+                        Avísame
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo llegar al festival -->
+    <section
+        class="section bg-lavanda-pale/60"
+        aria-labelledby="llegar-fest-heading"
+    >
+        <div class="container-brand max-w-3xl">
+            <div class="reveal mb-8">
+                <h2
+                    id="llegar-fest-heading"
+                    class="text-title font-serif font-bold text-carbon"
+                >
+                    Ven al Boina Fest
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {
+                    [
+                        {
+                            icon: "🎟️",
+                            title: "Entradas",
+                            desc: "Precio popular. El Boina Fest es accesible para todos. Consulta tarifas en el ayuntamiento.",
+                        },
+                        {
+                            icon: "🏕️",
+                            title: "Alojamiento",
+                            desc: "Camping habilitado durante el festival y opciones de alojamiento en municipios cercanos.",
+                        },
+                        {
+                            icon: "🍽️",
+                            title: "Gastronomía",
+                            desc: "Puestos de gastronomía local durante todo el festival. Pon a prueba la cocina soriana.",
+                        },
+                        {
+                            icon: "🚗",
+                            title: "Cómo llegar",
+                            desc: "Desde Soria por la SO-615, 45 min. Servicio de autobús especial desde Soria capital durante el festival.",
+                        },
+                    ].map((item, i) => (
+                        <div
+                            class={`reveal reveal-delay-${i % 2} p-6 bg-white rounded-2xl`}
+                        >
+                            <span
+                                class="text-3xl block mb-3"
+                                aria-hidden="true"
+                            >
+                                {item.icon}
+                            </span>
+                            <h3 class="font-serif font-bold text-carbon mb-2">
+                                {item.title}
+                            </h3>
+                            <p class="font-sans text-sm text-humo leading-relaxed">
+                                {item.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,467 @@
+---
+// src/pages/servicios.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Servicios · Arenillas, Soria — Información práctica"
+    description="Información práctica para vecinos y visitantes de Arenillas: ayuntamiento, consultorio, transporte, teléfonos útiles, incidencias y servicios locales."
+>
+    <!-- Header -->
+    <section class="section-sm bg-crema border-b border-lavanda-light/20">
+        <div class="container-brand">
+            <div class="max-w-2xl reveal">
+                <p class="section-label mb-3">Para vecinos y visitantes</p>
+                <h1 class="text-heading text-carbon mb-4">
+                    Servicios e información
+                </h1>
+                <p class="text-lead">
+                    Todo lo que necesitas saber para vivir, visitar o gestionar
+                    algo en Arenillas. Sin burocracia, sin rodeos.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ayuntamiento -->
+    <section
+        class="section bg-crema"
+        id="ayuntamiento"
+        aria-labelledby="ayto-heading"
+    >
+        <div class="container-brand">
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start"
+            >
+                <div class="reveal">
+                    <p class="section-label mb-3">Administración local</p>
+                    <h2 id="ayto-heading" class="text-heading text-carbon mb-6">
+                        Ayuntamiento
+                    </h2>
+                    <div class="space-y-5">
+                        {
+                            [
+                                {
+                                    label: "Dirección",
+                                    value: "C/ Real, s/n · 42368 Arenillas (Soria)",
+                                    icon: "📍",
+                                },
+                                {
+                                    label: "Teléfono",
+                                    value: "975 099 222",
+                                    icon: "📞",
+                                    href: "tel:+34975099222",
+                                },
+                                {
+                                    label: "Email",
+                                    value: "ayuntamiento@arenillas.es",
+                                    icon: "✉️",
+                                    href: "mailto:ayuntamiento@arenillas.es",
+                                },
+                                {
+                                    label: "Horario",
+                                    value: "Lunes a viernes · 9:00 – 14:00h",
+                                    icon: "🕐",
+                                },
+                            ].map((item) => (
+                                <div class="flex items-start gap-4 p-4 bg-lavanda-pale rounded-xl">
+                                    <span
+                                        class="text-xl shrink-0"
+                                        aria-hidden="true"
+                                    >
+                                        {item.icon}
+                                    </span>
+                                    <div>
+                                        <p class="font-sans text-xs font-semibold tracking-wider uppercase text-lavanda-deep mb-0.5">
+                                            {item.label}
+                                        </p>
+                                        {item.href ? (
+                                            <a
+                                                href={item.href}
+                                                class="font-sans text-sm text-carbon hover:text-lavanda-deep transition-colors"
+                                            >
+                                                {item.value}
+                                            </a>
+                                        ) : (
+                                            <p class="font-sans text-sm text-carbon">
+                                                {item.value}
+                                            </p>
+                                        )}
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-2 space-y-4">
+                    <h3 class="font-serif font-bold text-xl text-carbon mb-4">
+                        Trámites frecuentes
+                    </h3>
+                    {
+                        [
+                            {
+                                label: "Sede electrónica",
+                                desc: "Certificados, instancias y trámites online",
+                                href: "https://arenillas.sedelectronica.es",
+                                ext: true,
+                            },
+                            {
+                                label: "Padrón municipal",
+                                desc: "Alta, baja y modificaciones en el padrón",
+                                href: "/contacto?asunto=padron",
+                            },
+                            {
+                                label: "Licencias de obras",
+                                desc: "Obras menores, consultas urbanísticas",
+                                href: "/contacto?asunto=obras",
+                            },
+                            {
+                                label: "Certificados y volantes",
+                                desc: "Certificado de convivencia, empadronamiento",
+                                href: "/contacto?asunto=certificados",
+                            },
+                            {
+                                label: "Actividad y ruido",
+                                desc: "Licencias de actividad, quejas por ruido",
+                                href: "/contacto?asunto=actividad",
+                            },
+                            {
+                                label: "Ayudas y subvenciones",
+                                desc: "Convocatorias vigentes para residentes",
+                                href: "/actualidad?tipo=aviso",
+                            },
+                        ].map((t) => (
+                            <a
+                                href={t.href}
+                                target={t.ext ? "_blank" : undefined}
+                                rel={t.ext ? "noopener noreferrer" : undefined}
+                                class="group flex items-center justify-between gap-4 p-4 bg-white rounded-xl border border-grisclaro/40
+                      hover:border-lavanda-light hover:shadow-sm transition-all duration-200"
+                            >
+                                <div>
+                                    <p class="font-sans text-sm font-semibold text-carbon group-hover:text-lavanda-deep transition-colors">
+                                        {t.label}
+                                    </p>
+                                    <p class="font-sans text-xs text-humo mt-0.5">
+                                        {t.desc}
+                                    </p>
+                                </div>
+                                <svg
+                                    width="14"
+                                    height="14"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.5"
+                                    class="text-lavanda-light group-hover:text-lavanda-deep transition-colors shrink-0"
+                                    aria-hidden="true"
+                                >
+                                    <path
+                                        d="M3 8h10M9 4l4 4-4 4"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                    />
+                                </svg>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sanitario -->
+    <section
+        class="section bg-lavanda-pale/40"
+        id="sanitario"
+        aria-labelledby="sanitario-heading"
+    >
+        <div class="container-brand">
+            <div class="max-w-2xl mb-10 reveal">
+                <p class="section-label mb-3">Salud</p>
+                <h2 id="sanitario-heading" class="text-heading text-carbon">
+                    Consultorio médico
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {
+                    [
+                        {
+                            titulo: "Consultorio local",
+                            icon: "🏥",
+                            items: [
+                                "Atención primaria",
+                                "Cita previa telefónica",
+                                "Urgencias → Hospital Santa Bárbara (Soria)",
+                            ],
+                            nota: "Consulta horarios actualizados en el Centro de Salud de referencia",
+                            color: "bg-white",
+                        },
+                        {
+                            titulo: "Farmacia más cercana",
+                            icon: "💊",
+                            items: [
+                                "Farmacia en municipio próximo",
+                                "Consultar turno de guardia",
+                                "Medicamentos crónicos: gestión telefónica",
+                            ],
+                            nota: "El ayuntamiento puede facilitar información de contacto actualizada",
+                            color: "bg-white",
+                        },
+                        {
+                            titulo: "Urgencias",
+                            icon: "🚨",
+                            items: [
+                                "Emergencias: 112",
+                                "Hospital Santa Bárbara · Soria",
+                                "Distancia: aprox. 45 min en coche",
+                            ],
+                            nota: null,
+                            color: "bg-carbon text-crema",
+                        },
+                    ].map((card) => (
+                        <div class={`reveal p-6 rounded-2xl ${card.color}`}>
+                            <span
+                                class="text-3xl block mb-4"
+                                aria-hidden="true"
+                            >
+                                {card.icon}
+                            </span>
+                            <h3 class="font-serif font-bold text-lg mb-4">
+                                {card.titulo}
+                            </h3>
+                            <ul class="space-y-2 mb-4">
+                                {card.items.map((item) => (
+                                    <li class="font-sans text-sm flex items-start gap-2">
+                                        <span
+                                            class="text-lavanda mt-0.5"
+                                            aria-hidden="true"
+                                        >
+                                            ·
+                                        </span>
+                                        <span
+                                            class={
+                                                card.color.includes("carbon")
+                                                    ? "text-crema/80"
+                                                    : "text-humo"
+                                            }
+                                        >
+                                            {item}
+                                        </span>
+                                    </li>
+                                ))}
+                            </ul>
+                            {card.nota && (
+                                <p class="font-sans text-xs text-humo italic border-t border-grisclaro/50 pt-3 mt-3">
+                                    {card.nota}
+                                </p>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Transporte -->
+    <section
+        class="section bg-crema"
+        id="transporte"
+        aria-labelledby="transporte-heading"
+    >
+        <div class="container-brand max-w-3xl">
+            <div class="reveal mb-8">
+                <p class="section-label mb-3">Movilidad</p>
+                <h2 id="transporte-heading" class="text-heading text-carbon">
+                    Transporte
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+                {
+                    [
+                        {
+                            modo: "Autobús regular",
+                            icon: "🚌",
+                            desc: "Servicio de autobús con la capital. Consultar horarios actualizados en la web de la Diputación de Soria.",
+                            href: "https://www.dipsoria.es/transporte",
+                            cta: "Ver horarios",
+                        },
+                        {
+                            modo: "En coche",
+                            icon: "🚗",
+                            desc: "Desde Soria capital: aprox. 45 min por SO-615. Desde Madrid: 2h 30min por A-2 y N-122.",
+                            href: null,
+                            cta: null,
+                        },
+                        {
+                            modo: "Taxi",
+                            icon: "🚕",
+                            desc: "Radio taxi de Soria disponible. Contactar con el ayuntamiento para directorio actualizado.",
+                            href: "/contacto?asunto=taxi",
+                            cta: "Pedir info",
+                        },
+                        {
+                            modo: "Bicicleta",
+                            icon: "🚲",
+                            desc: "Rutas ciclistas por el entorno de Arenillas. Terreno llano con algunos repechos suaves.",
+                            href: "/turismo#rutas",
+                            cta: "Ver rutas",
+                        },
+                    ].map((t) => (
+                        <div class="reveal p-6 bg-lavanda-pale/50 rounded-2xl">
+                            <span
+                                class="text-3xl block mb-3"
+                                aria-hidden="true"
+                            >
+                                {t.icon}
+                            </span>
+                            <h3 class="font-serif font-bold text-carbon mb-2">
+                                {t.modo}
+                            </h3>
+                            <p class="font-sans text-sm text-humo leading-relaxed mb-4">
+                                {t.desc}
+                            </p>
+                            {t.href && t.cta && (
+                                <a
+                                    href={t.href}
+                                    target={
+                                        t.href.startsWith("http")
+                                            ? "_blank"
+                                            : undefined
+                                    }
+                                    rel={
+                                        t.href.startsWith("http")
+                                            ? "noopener noreferrer"
+                                            : undefined
+                                    }
+                                    class="btn-ghost text-xs"
+                                >
+                                    {t.cta} →
+                                </a>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Teléfonos útiles -->
+    <section
+        class="section bg-lavanda-pale/40"
+        id="telefonos"
+        aria-labelledby="telefonos-heading"
+    >
+        <div class="container-brand max-w-3xl">
+            <div class="reveal mb-8">
+                <p class="section-label mb-3">Directorio</p>
+                <h2 id="telefonos-heading" class="text-heading text-carbon">
+                    Teléfonos útiles
+                </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                {
+                    [
+                        {
+                            nombre: "Ayuntamiento de Arenillas",
+                            tel: "975 099 222",
+                            tipo: "Municipal",
+                        },
+                        {
+                            nombre: "Emergencias",
+                            tel: "112",
+                            tipo: "Urgencias",
+                        },
+                        {
+                            nombre: "Guardia Civil — Soria",
+                            tel: "975 220 122",
+                            tipo: "Seguridad",
+                        },
+                        {
+                            nombre: "Hospital Santa Bárbara",
+                            tel: "975 234 500",
+                            tipo: "Salud",
+                        },
+                        {
+                            nombre: "Centro de Salud referencia",
+                            tel: "Ver ayuntamiento",
+                            tipo: "Salud",
+                        },
+                        {
+                            nombre: "Diputación de Soria",
+                            tel: "975 226 400",
+                            tipo: "Provincial",
+                        },
+                        {
+                            nombre: "Junta CyL — Delegación",
+                            tel: "975 299 000",
+                            tipo: "Autonómico",
+                        },
+                        {
+                            nombre: "Información tráfico — DGT",
+                            tel: "011",
+                            tipo: "Tráfico",
+                        },
+                    ].map((t) => (
+                        <div class="reveal flex items-center justify-between gap-4 p-4 bg-white rounded-xl border border-grisclaro/40">
+                            <div>
+                                <p class="font-sans text-xs font-semibold tracking-wider uppercase text-humo mb-0.5">
+                                    {t.tipo}
+                                </p>
+                                <p class="font-sans text-sm font-medium text-carbon">
+                                    {t.nombre}
+                                </p>
+                            </div>
+                            {t.tel.match(/^\d/) ? (
+                                <a
+                                    href={`tel:+34${t.tel.replace(/\s/g, "")}`}
+                                    class="font-serif font-bold text-lg text-lavanda-deep hover:text-lavanda transition-colors shrink-0"
+                                >
+                                    {t.tel}
+                                </a>
+                            ) : (
+                                <p class="font-sans text-xs text-humo shrink-0 text-right max-w-[120px] leading-snug">
+                                    {t.tel}
+                                </p>
+                            )}
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Incidencias -->
+    <section
+        class="section bg-crema"
+        id="incidencias"
+        aria-labelledby="incidencias-heading"
+    >
+        <div class="container-brand max-w-2xl">
+            <div class="reveal">
+                <p class="section-label mb-3">Comunicación vecinal</p>
+                <h2
+                    id="incidencias-heading"
+                    class="text-title font-serif font-bold text-carbon mb-4"
+                >
+                    Reportar una incidencia
+                </h2>
+                <p class="font-sans text-base text-humo leading-relaxed mb-8">
+                    ¿Has detectado un problema en la vía pública, un foco de luz
+                    fundido, una avería en la red de agua o cualquier otra
+                    incidencia? Escríbenos y lo gestionamos.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="/contacto?asunto=incidencia" class="btn-primary">
+                        Reportar incidencia
+                    </a>
+                    <a href="tel:+34975099222" class="btn-outline">
+                        Llamar al ayuntamiento
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</Layout>

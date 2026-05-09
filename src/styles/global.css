@@ -1,1 +1,477 @@
-@import "tailwindcss";
+/* ═══════════════════════════════════════════════════════
+   ARENILLAS · Global Styles
+   "La Esencia que Resiste"
+   v2.0 — Web híbrida: branding + utilidad vecinal
+═══════════════════════════════════════════════════════ */
+
+/* ── Fonts ───────────────────────────────────────────── */
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+
+@import '@fontsource/inter/300.css';
+@import '@fontsource/inter/400.css';
+@import '@fontsource/inter/600.css';
+
+/* ── Tailwind ────────────────────────────────────────── */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════════════════════
+   BASE
+═══════════════════════════════════════════════════════ */
+
+@layer base {
+
+    :root {
+        scroll-behavior: smooth;
+    }
+
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        font-size: 16px;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+        @apply bg-crema text-carbon font-sans overflow-x-hidden;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-serif;
+    }
+
+    img {
+        @apply max-w-full h-auto block;
+    }
+
+    a {
+        @apply transition-colors duration-300;
+    }
+
+    :focus-visible {
+        outline: 2px solid theme('colors.lavanda.DEFAULT');
+        outline-offset: 3px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: theme('colors.crema');
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: theme('colors.lavanda.light');
+        border-radius: 9999px;
+    }
+
+    /* Selección de texto */
+    ::selection {
+        background: theme('colors.lavanda.DEFAULT');
+        color: white;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════
+   COMPONENTS
+═══════════════════════════════════════════════════════ */
+
+@layer components {
+
+    /* ─────────────────────────────────────────────────────
+     LAYOUT
+  ───────────────────────────────────────────────────── */
+
+    .container-brand {
+        @apply w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-20;
+    }
+
+    /* Secciones con padding vertical estándar */
+    .section {
+        @apply py-24 md:py-32;
+    }
+
+    .section-sm {
+        @apply py-16 md:py-20;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     TIPOGRAFÍA
+  ───────────────────────────────────────────────────── */
+
+    /* Label de sección — encima de los títulos */
+    .section-label {
+        @apply font-sans text-xs font-semibold uppercase tracking-[0.25em] text-lavanda;
+    }
+
+    /*
+    Títulos principales — se definen con clases explícitas
+    y NO con @apply encadenado para evitar dependencias circulares.
+  */
+    .text-display {
+        @apply font-serif font-bold leading-none tracking-tight;
+        font-size: clamp(3rem, 8vw, 6rem);
+    }
+
+    .text-heading {
+        @apply font-serif font-bold leading-tight;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+    }
+
+    .text-title {
+        @apply font-serif font-bold leading-snug;
+        font-size: clamp(1.5rem, 3vw, 2.25rem);
+    }
+
+    .text-lead {
+        @apply font-sans text-grafito leading-relaxed;
+        font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     DECORATIVOS
+  ───────────────────────────────────────────────────── */
+
+    /* Línea decorativa bajo títulos */
+    .deco-line {
+        @apply block w-16 h-px bg-tierra origin-left;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     CARDS
+  ───────────────────────────────────────────────────── */
+
+    .card {
+        @apply bg-white rounded-2xl overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     BOTONES
+  ───────────────────────────────────────────────────── */
+
+    .btn-primary {
+        @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-lavanda-deep text-crema text-sm font-sans font-semibold tracking-wide transition-all duration-300 hover:bg-lavanda hover:shadow-lg hover:shadow-lavanda/20 focus-visible:ring-2 focus-visible:ring-lavanda-deep;
+    }
+
+    .btn-outline {
+        @apply inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-lavanda-deep text-lavanda-deep text-sm font-sans font-semibold tracking-wide transition-all duration-300 hover:bg-lavanda-deep hover:text-crema focus-visible:ring-2 focus-visible:ring-lavanda-deep;
+    }
+
+    .btn-ghost {
+        @apply inline-flex items-center gap-2 text-sm font-sans font-semibold tracking-wide text-lavanda-deep underline-offset-4 transition-all hover:underline;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     TAGS / BADGES
+  ───────────────────────────────────────────────────── */
+
+    .tag {
+        @apply inline-block px-3 py-1 rounded-full text-xs font-sans font-semibold uppercase tracking-wider;
+    }
+
+    /* Variantes de color */
+    .tag-lavanda {
+        @apply bg-lavanda-pale text-lavanda-deep;
+    }
+
+    .tag-tierra {
+        @apply bg-tierra-arena text-tierra-dark;
+    }
+
+    .tag-musgo {
+        @apply bg-musgo/10 text-musgo;
+    }
+
+    .tag-dark {
+        @apply bg-carbon text-crema;
+    }
+
+    .tag-cielo {
+        @apply bg-cielo/20 text-lavanda-deep;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     FORMULARIOS
+     Usados en contacto.astro
+  ───────────────────────────────────────────────────── */
+
+    .field-label {
+        @apply block font-sans text-sm font-medium text-carbon mb-2;
+    }
+
+    .field-input {
+        @apply w-full px-4 py-3 rounded-xl border border-grisclaro bg-white font-sans text-sm text-carbon placeholder:text-grisclaro focus:outline-none focus:ring-2 focus:ring-lavanda-deep focus:border-transparent transition-all duration-200;
+    }
+
+    /* Estado inválido — se muestra solo si el usuario ha interactuado */
+    .field-input:invalid:not(:placeholder-shown) {
+        @apply border-tierra/50;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     NAVEGACIÓN
+     Clases de color dinámico del Nav — controladas por JS
+     mediante data-scrolled en el <header>
+  ───────────────────────────────────────────────────── */
+
+    /*
+    El nav siempre arranca sólido (clases en el HTML).
+    En home, JS elimina el fondo mientras scrollY < 40.
+    Cuando es transparente, los textos pasan a crema/lavanda.
+  */
+
+    /* Transparente: solo home en el top */
+    #nav[data-scrolled="false"] .nav-icon-color {
+        color: theme('colors.lavanda.light');
+    }
+
+    #nav[data-scrolled="false"] .nav-text-color {
+        color: theme('colors.crema');
+    }
+
+    #nav[data-scrolled="false"] .nav-sub-color {
+        color: theme('colors.lavanda.light');
+    }
+
+    #nav[data-scrolled="false"] .nav-link-color {
+        color: rgba(247, 243, 239, 0.85);
+    }
+
+    #nav[data-scrolled="false"] .nav-bar-color {
+        background: theme('colors.crema');
+    }
+
+    /* Sólido: scroll en home o cualquier página interior */
+    #nav[data-scrolled="true"] .nav-icon-color {
+        color: theme('colors.lavanda.deep');
+    }
+
+    #nav[data-scrolled="true"] .nav-text-color {
+        color: theme('colors.carbon');
+    }
+
+    #nav[data-scrolled="true"] .nav-sub-color {
+        color: theme('colors.humo');
+    }
+
+    #nav[data-scrolled="true"] .nav-link-color {
+        color: theme('colors.carbon');
+    }
+
+    #nav[data-scrolled="true"] .nav-bar-color {
+        background: theme('colors.carbon');
+    }
+
+    /*
+    Fallback CSS puro — cubre el instante entre render HTML y ejecución JS.
+    Garantiza que el nav no aparezca con textos invisibles antes de hidratar.
+  */
+    #nav:not([data-scrolled="false"]) .nav-icon-color {
+        color: theme('colors.lavanda.deep');
+    }
+
+    #nav:not([data-scrolled="false"]) .nav-text-color {
+        color: theme('colors.carbon');
+    }
+
+    #nav:not([data-scrolled="false"]) .nav-sub-color {
+        color: theme('colors.humo');
+    }
+
+    #nav:not([data-scrolled="false"]) .nav-link-color {
+        color: theme('colors.carbon');
+    }
+
+    #nav:not([data-scrolled="false"]) .nav-bar-color {
+        background: theme('colors.carbon');
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     ANIMACIONES REVEAL ON SCROLL
+     Activadas por IntersectionObserver en Layout.astro
+  ───────────────────────────────────────────────────── */
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition:
+            opacity 0.7s ease,
+            transform 0.7s ease;
+    }
+
+    .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Delays escalonados para grupos de elementos */
+    .reveal-delay-1 {
+        transition-delay: 0.15s;
+    }
+
+    .reveal-delay-2 {
+        transition-delay: 0.30s;
+    }
+
+    .reveal-delay-3 {
+        transition-delay: 0.45s;
+    }
+
+    .reveal-delay-4 {
+        transition-delay: 0.60s;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     OVERLAYS DE IMAGEN
+  ───────────────────────────────────────────────────── */
+
+    /* Degradado estándar para textos sobre foto */
+    .img-overlay {
+        @apply absolute inset-0 bg-gradient-to-t from-carbon/70 via-carbon/20 to-transparent;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     GALERÍA — lightbox y filtros
+     Usados en galeria.astro
+  ───────────────────────────────────────────────────── */
+
+    /* Ocultar scrollbar en los filtros horizontales */
+    .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* Truncado de texto en cards */
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+
+    /* ─────────────────────────────────────────────────────
+     ACCESOS RÁPIDOS
+     Usados en AccesosRapidos.astro
+  ───────────────────────────────────────────────────── */
+
+    /*
+    Los accesos rápidos usan colores inline via class:list
+    combinando clases de Tailwind estándar.
+    No necesitan clases propias adicionales.
+  */
+
+
+    /* ─────────────────────────────────────────────────────
+     AGENDA — timeline de eventos
+     Usados en agenda.astro
+  ───────────────────────────────────────────────────── */
+
+    /* Los eventos usan border-color heredado del texto para el separador vertical */
+    .event-separator {
+        @apply w-px bg-current opacity-10 shrink-0;
+    }
+}
+
+/* ═══════════════════════════════════════════════════════
+   UTILITIES
+═══════════════════════════════════════════════════════ */
+
+@layer utilities {
+
+    /* Equilibrado tipográfico */
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    /* Textura de ruido sutil para fondos */
+    .bg-noise {
+        background-image:
+            url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    }
+
+    /* Cristal / glassmorphism — usado en overlays */
+    .glass {
+        @apply backdrop-blur-md bg-white/70 border border-white/20;
+    }
+
+    /* Variante oscura del glass — para overlays sobre fotos oscuras */
+    .glass-dark {
+        @apply backdrop-blur-md bg-carbon/60 border border-white/10;
+    }
+
+    /* Gradiente editorial de sección a sección */
+    .gradient-section {
+        background: linear-gradient(180deg,
+                theme('colors.crema') 0%,
+                theme('colors.lavanda.pale') 100%);
+    }
+
+    /* Sombra lavanda — para cards y botones destacados */
+    .shadow-lavanda {
+        box-shadow: 0 8px 32px -8px theme('colors.lavanda.DEFAULT' / 25%);
+    }
+
+    .shadow-lavanda-lg {
+        box-shadow: 0 20px 48px -12px theme('colors.lavanda.DEFAULT' / 30%);
+    }
+
+    /* Aspect ratios frecuentes en el proyecto */
+    .aspect-hero {
+        aspect-ratio: 16 / 9;
+    }
+
+    .aspect-card {
+        aspect-ratio: 4 / 3;
+    }
+
+    .aspect-portrait {
+        aspect-ratio: 3 / 4;
+    }
+
+    .aspect-square {
+        aspect-ratio: 1 / 1;
+    }
+
+    .aspect-story {
+        aspect-ratio: 9 / 16;
+    }
+}

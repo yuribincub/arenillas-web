@@ -1,0 +1,104 @@
+---
+// src/components/SectionTurismo.astro
+import { imageLibrary } from '../data/images.js';
+
+const experiencias = [
+  {
+    slug: 'espliego',
+    tag: 'Naturaleza',
+    tagColor: 'lavanda',
+    title: 'Ruta del Espliego',
+    text: 'Camina entre campos de lavanda en flor con el horizonte soriano como telón de fondo. 4 km · Dificultad baja.',
+    img: imageLibrary.espliegoFeatured.src,
+    alt: 'Campo de espliego en flor en Arenillas, Soria',
+    href: '/turismo#espliego',
+  },
+  {
+    slug: 'arquitectura',
+    tag: 'Cultura',
+    tagColor: 'tierra',
+    title: 'Patrimonio de piedra',
+    text: 'Iglesia medieval, arquitectura popular castellana y rincones que el tiempo ha preservado con mimo.',
+    img: imageLibrary.iglesiaFeatured.src,
+    alt: 'Arquitectura de piedra en Arenillas',
+    href: '/turismo#arquitectura',
+  },
+  {
+    slug: 'destilacion',
+    tag: 'Artesanía',
+    tagColor: 'musgo',
+    title: 'Destilación de lavanda',
+    text: 'Conoce el proceso tradicional de destilación del espliego y descubre el aceite esencial que da identidad al pueblo.',
+    img: imageLibrary.destilacionEspliegoFeatured.src,
+    alt: 'Destilación artesanal de espliego en Arenillas',
+    href: '/turismo#destilacion',
+  },
+  {
+    slug: 'senderismo',
+    tag: 'Senderismo',
+    tagColor: 'musgo',
+    title: 'Rutas por el entorno',
+    text: 'El entorno de Arenillas ofrece rutas de senderismo para todos los niveles entre campos, valles y páramos sorianos.',
+    img: imageLibrary.senderismoFeatured.src,
+    alt: 'Senderismo en los alrededores de Arenillas, Soria',
+    href: '/turismo#rutas',
+  },
+];
+---
+
+<section class="section bg-lavanda-pale/40" aria-labelledby="turismo-heading">
+  <div class="container-brand">
+
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+      <div class="reveal">
+        <p class="section-label mb-3">Qué hacer</p>
+        <h2 id="turismo-heading" class="text-heading text-carbon">
+          Experiencias auténticas
+        </h2>
+      </div>
+      <a href="/turismo" class="btn-ghost reveal reveal-delay-2 self-start md:self-auto">
+        Ver todo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {experiencias.map((exp, i) => (
+        <article class={`card reveal reveal-delay-${i % 4} group`}>
+          <a href={exp.href} class="block h-full focus-visible:ring-2 focus-visible:ring-lavanda-deep rounded-2xl">
+            <!-- Image -->
+            <div class="aspect-[4/3] overflow-hidden bg-lavanda-pale relative">
+              <img
+                src={exp.img}
+                alt={exp.alt}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                loading="lazy"
+              />
+              <div class="absolute top-4 left-4">
+                <span class={`tag ${exp.tagColor === 'lavanda' ? 'tag-lavanda' : exp.tagColor === 'tierra' ? 'tag-tierra' : 'tag-musgo'}`}>
+                  {exp.tag}
+                </span>
+              </div>
+            </div>
+            <!-- Content -->
+            <div class="p-6">
+              <h3 class="font-serif font-bold text-lg text-carbon mb-2 group-hover:text-lavanda-deep transition-colors">
+                {exp.title}
+              </h3>
+              <p class="font-sans text-sm text-humo leading-relaxed mb-4">{exp.text}</p>
+              <span class="btn-ghost text-xs">
+                Saber más
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

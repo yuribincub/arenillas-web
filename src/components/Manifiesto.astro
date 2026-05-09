@@ -1,0 +1,68 @@
+---
+// src/components/Manifiesto.astro
+---
+
+<section class="relative py-24 md:py-36 bg-carbon overflow-hidden" aria-label="Manifiesto de Arenillas">
+
+  <!-- Lavanda accent bar left -->
+  <div class="absolute left-0 top-0 bottom-0 w-1 bg-lavanda-deep" aria-hidden="true"></div>
+
+  <!-- Decorative sprig SVG -->
+  <div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-5 pointer-events-none" aria-hidden="true">
+    <svg viewBox="0 0 200 600" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <line x1="100" y1="600" x2="100" y2="50" stroke="white" stroke-width="3"/>
+      {[50,100,150,200,250,300,350,400,450,500].map(y => (
+        <>
+          <line x1="100" y1={y} x2="60"  y2={y - 40} stroke="white" stroke-width="2"/>
+          <line x1="100" y1={y} x2="140" y2={y - 40} stroke="white" stroke-width="2"/>
+          <circle cx="55"  cy={y - 44} r="6" fill="white"/>
+          <circle cx="145" cy={y - 44} r="6" fill="white"/>
+        </>
+      ))}
+    </svg>
+  </div>
+
+  <div class="container-brand relative z-10">
+    <div class="max-w-2xl">
+
+      <p class="section-label text-lavanda mb-8">Manifiesto</p>
+
+      <blockquote class="space-y-6">
+        <p class="font-serif italic text-2xl md:text-3xl text-crema/90 leading-relaxed reveal">
+          Hay lugares que el mapa conoce pero que el mundo todavía no ha descubierto.
+        </p>
+        <p class="font-serif text-2xl md:text-3xl text-lavanda-light leading-relaxed reveal reveal-delay-1">
+          Arenillas es uno de ellos.
+        </p>
+        <p class="font-sans text-base text-crema/60 leading-relaxed max-w-lg reveal reveal-delay-2">
+          Es un pueblo que ha aprendido que quedarse también es una forma de ir adelante.
+          Que la calma no es resignación sino elección. Que el silencio tiene más que
+          decir que el ruido.
+        </p>
+        <p class="font-sans text-base text-crema/60 leading-relaxed max-w-lg reveal reveal-delay-3">
+          Aquí, el espliego no florece por casualidad. Florece porque esta tierra
+          sabe guardar lo que vale.
+        </p>
+
+        <div class="pt-4 space-y-2 reveal reveal-delay-4">
+          <p class="font-serif font-bold text-xl text-tierra-light">
+            No somos un destino de escapada.
+          </p>
+          <p class="font-serif font-bold text-xl text-tierra-light">
+            Somos un lugar al que se vuelve.
+          </p>
+        </div>
+
+        <div class="pt-8 border-t border-crema/10 reveal">
+          <p class="font-serif italic text-lg text-lavanda-light">
+            Bienvenido a Arenillas.
+          </p>
+          <p class="font-sans text-xs tracking-[0.3em] uppercase text-humo mt-2">
+            La esencia que resiste.
+          </p>
+        </div>
+      </blockquote>
+
+    </div>
+  </div>
+</section>

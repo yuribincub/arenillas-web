@@ -1,0 +1,259 @@
+---
+// src/pages/negocios.astro
+import Layout from '../layouts/Layout.astro';
+
+const negocios = [
+  {
+    nombre: 'Bar El Horizonte', tipo: 'Bar · Restaurante', tag: 'Hostelería',
+    descripcion: 'El punto de encuentro del pueblo. Cocina casera soriana, pincho de tortilla inigualable y terraza con vistas. El sitio donde pasan las conversaciones que importan.',
+    horario: 'L–D · 9:00–23:00', telefono: '975 000 001',
+    img: '/images/negocios/bar-horizonte.jpg', alt: 'Terraza del Bar El Horizonte en Arenillas',
+    destacado: true,
+  },
+  {
+    nombre: 'Espliego de Arenillas', tipo: 'Destilería artesanal', tag: 'Artesanía',
+    descripcion: 'Aceites esenciales, aguas florales, jabones y cosmética natural producida artesanalmente con el espliego cultivado en los campos que rodean el pueblo. Visitas bajo cita previa.',
+    horario: 'Mar–Sáb · 10:00–14:00', instagram: '@espliego_arenillas',
+    img: '/images/negocios/espliego-destileria.jpg', alt: 'Destilería artesanal de espliego en Arenillas',
+    destacado: false,
+  },
+  {
+    nombre: 'Casa Rural La Piedra', tipo: 'Alojamiento rural', tag: 'Alojamiento',
+    descripcion: 'Casa de piedra del siglo XVIII restaurada con sensibilidad. Cuatro habitaciones con baño propio, salón con chimenea, jardín y vistas al horizonte. Desayuno casero incluido.',
+    telefono: '975 000 002', href: 'https://casarurallapiedra.es',
+    img: '/images/negocios/casa-rural.jpg', alt: 'Fachada de Casa Rural La Piedra en Arenillas',
+    destacado: false,
+  },
+  {
+    nombre: 'Panadería Familia Ruiz', tipo: 'Panadería · Repostería', tag: 'Producción',
+    descripcion: 'Pan de masa madre con harina de trigo local. Los roscos de anís son la memoria del pueblo en forma de masa. También hornaza, tortas de manteca y dulces de temporada.',
+    horario: 'L–S · 8:00–13:00',
+    img: '/images/negocios/panaderia.jpg', alt: 'Roscos de anís de la Panadería Familia Ruiz',
+    destacado: false,
+  },
+  {
+    nombre: 'Taller de Cerámica Soria', tipo: 'Artesanía', tag: 'Artesanía',
+    descripcion: 'Cerámica artesanal con motivos sorianos. Piezas únicas, talleres de iniciación para visitantes y grupos. Producción local, ventas online y en el taller.',
+    horario: 'Jue–Dom · 10:00–14:00 / 17:00–20:00', instagram: '@ceramica_soria',
+    img: '/images/negocios/ceramica.jpg', alt: 'Piezas de cerámica artesanal soriana',
+    destacado: false,
+  },
+  {
+    nombre: 'Camping La Lastra', tipo: 'Alojamiento · Camping', tag: 'Alojamiento',
+    descripcion: 'Camping familiar en parcelas naturales junto al arroyo. Cabañas de madera disponibles. Punto de partida ideal para las rutas de senderismo del entorno.',
+    telefono: '975 000 003', href: 'https://campinglalastra.es',
+    img: '/images/negocios/camping.jpg', alt: 'Camping La Lastra en el entorno de Arenillas',
+    destacado: false,
+  },
+];
+
+const tagColor: Record<string, string> = {
+  'Hostelería':  'tag-lavanda',
+  'Artesanía':   'tag-tierra',
+  'Alojamiento': 'bg-musgo/10 text-musgo',
+  'Servicio':    'bg-cielo/20 text-lavanda-deep',
+  'Producción':  'bg-tierra-arena text-tierra-dark',
+};
+
+const categorias = ['Todos', ...new Set(negocios.map(n => n.tag))];
+---
+
+<Layout
+  title="Negocios locales · Arenillas, Soria — Quién da vida al pueblo"
+  description="Directorio de negocios locales de Arenillas: bares, artesanía, alojamiento rural, panadería y productores. Conoce a quién da vida al pueblo."
+>
+
+  <!-- Hero editorial oscuro -->
+  <section class="relative min-h-[45vh] flex items-end bg-carbon overflow-hidden">
+    <div class="absolute inset-0">
+      <img src="/images/negocios-hero.jpg" alt="Vista de Arenillas con sus negocios y vida local"
+           class="w-full h-full object-cover opacity-40" loading="eager"/>
+      <div class="absolute inset-0 bg-gradient-to-t from-carbon/90 to-transparent"></div>
+    </div>
+    <div class="relative z-10 container-brand pb-14 md:pb-18">
+      <p class="section-label text-lavanda mb-3">Economía local</p>
+      <h1 class="font-serif font-bold text-crema mb-3"
+          style="font-size:clamp(2rem,6vw,4rem); line-height:1.1;">
+        Quién da vida<br/>a Arenillas
+      </h1>
+      <p class="font-serif italic text-xl text-lavanda-light">
+        Negocios con historia. Personas con nombre.
+      </p>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="section-sm bg-crema border-b border-lavanda-light/20">
+    <div class="container-brand">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        <p class="font-sans text-base text-humo leading-relaxed reveal">
+          Los negocios de Arenillas no son solo servicios. Son historias de personas
+          que eligieron quedarse, apostaron por el pueblo y hacen que la vida
+          aquí tenga más sentido. Cuando compras en un negocio local,
+          apoyas a alguien del pueblo. Y eso se nota.
+        </p>
+        <div class="flex flex-wrap gap-3 reveal reveal-delay-1">
+          {categorias.map((cat, i) => (
+            <button
+              data-cat={cat}
+              class:list={[
+                'filtro-btn px-4 py-2 rounded-full font-sans text-sm font-medium transition-all duration-200',
+                i === 0 ? 'bg-lavanda-deep text-crema' : 'bg-lavanda-pale text-lavanda-deep hover:bg-lavanda-light'
+              ]}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Grid negocios -->
+  <section class="section bg-crema" aria-label="Directorio de negocios">
+    <div class="container-brand">
+
+      <!-- Negocio destacado -->
+      {negocios.filter(n => n.destacado).map(neg => (
+        <article class="negocio-item mb-8 reveal" data-cat={neg.tag}>
+          <div class="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden border border-grisclaro/30
+                      hover:border-lavanda-light hover:shadow-xl hover:shadow-lavanda/10 transition-all duration-400 group">
+            <div class="aspect-video lg:aspect-auto overflow-hidden bg-lavanda-pale">
+              <img src={neg.img} alt={neg.alt}
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                   loading="lazy"/>
+            </div>
+            <div class="p-8 md:p-10 flex flex-col justify-center bg-white">
+              <div class="flex items-center gap-3 mb-4">
+                <span class={`tag ${tagColor[neg.tag]}`}>{neg.tag}</span>
+                <span class="font-sans text-xs text-humo">· Destacado</span>
+              </div>
+              <h2 class="font-serif font-bold text-2xl text-carbon mb-2 group-hover:text-lavanda-deep transition-colors">
+                {neg.nombre}
+              </h2>
+              <p class="font-sans text-xs text-humo tracking-wide mb-4">{neg.tipo}</p>
+              <p class="font-sans text-base text-humo leading-relaxed mb-6">{neg.descripcion}</p>
+              <div class="space-y-2 pt-4 border-t border-grisclaro/50">
+                {neg.horario && (
+                  <p class="flex items-center gap-2 font-sans text-sm text-humo">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                    </svg>
+                    {neg.horario}
+                  </p>
+                )}
+                {neg.telefono && (
+                  <a href={`tel:${neg.telefono.replace(/\s/g,'')}`}
+                     class="flex items-center gap-2 font-sans text-sm text-lavanda-deep hover:underline">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/>
+                    </svg>
+                    {neg.telefono}
+                  </a>
+                )}
+              </div>
+            </div>
+          </div>
+        </article>
+      ))}
+
+      <!-- Grid resto -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="negocios-grid">
+        {negocios.filter(n => !n.destacado).map((neg, i) => (
+          <article class:list={[`negocio-item card reveal reveal-delay-${i % 3} group`]} data-cat={neg.tag}>
+            <div class="aspect-[4/3] overflow-hidden bg-lavanda-pale relative">
+              <img src={neg.img} alt={neg.alt}
+                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                   loading="lazy"/>
+              <div class="absolute top-3 left-3">
+                <span class={`tag ${tagColor[neg.tag]}`}>{neg.tag}</span>
+              </div>
+            </div>
+            <div class="p-6 flex flex-col gap-3">
+              <div>
+                <p class="font-sans text-xs text-humo mb-1">{neg.tipo}</p>
+                <h2 class="font-serif font-bold text-lg text-carbon group-hover:text-lavanda-deep transition-colors">
+                  {neg.nombre}
+                </h2>
+              </div>
+              <p class="font-sans text-sm text-humo leading-relaxed flex-1">{neg.descripcion}</p>
+              <div class="space-y-1.5 pt-3 border-t border-grisclaro/40">
+                {neg.horario && (
+                  <p class="flex items-center gap-2 font-sans text-xs text-humo">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                    </svg>
+                    {neg.horario}
+                  </p>
+                )}
+                {neg.telefono && (
+                  <a href={`tel:${neg.telefono.replace(/\s/g,'')}`}
+                     class="flex items-center gap-2 font-sans text-xs text-lavanda-deep hover:underline">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                      <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07"/>
+                    </svg>
+                    {neg.telefono}
+                  </a>
+                )}
+                {neg.instagram && (
+                  <p class="flex items-center gap-2 font-sans text-xs text-humo">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/>
+                    </svg>
+                    {neg.instagram}
+                  </p>
+                )}
+                {neg.href && (
+                  <a href={neg.href} target="_blank" rel="noopener noreferrer"
+                     class="flex items-center gap-2 font-sans text-xs text-lavanda-deep hover:underline">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                    </svg>
+                    Ver web
+                  </a>
+                )}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- CTA añadir negocio -->
+      <div class="mt-10 p-8 rounded-2xl border border-dashed border-lavanda-light flex flex-col md:flex-row
+                  items-start md:items-center justify-between gap-6 reveal">
+        <div>
+          <p class="font-serif font-bold text-xl text-carbon mb-2">¿Tienes un negocio en Arenillas?</p>
+          <p class="font-sans text-sm text-humo max-w-lg">
+            El directorio es gratuito para todos los negocios del pueblo.
+            Escríbenos con tu información y lo publicamos en 24-48h.
+          </p>
+        </div>
+        <a href="/contacto?asunto=directorio-negocio" class="btn-primary shrink-0">
+          Añadir mi negocio
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  const botones = document.querySelectorAll<HTMLButtonElement>('.filtro-btn');
+  const items   = document.querySelectorAll<HTMLElement>('.negocio-item');
+
+  botones.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.cat!;
+      botones.forEach(b => {
+        b.classList.replace('bg-lavanda-deep','bg-lavanda-pale');
+        b.classList.replace('text-crema','text-lavanda-deep');
+      });
+      btn.classList.replace('bg-lavanda-pale','bg-lavanda-deep');
+      btn.classList.replace('text-lavanda-deep','text-crema');
+      items.forEach(el => {
+        el.style.display = (cat === 'Todos' || el.dataset.cat === cat) ? '' : 'none';
+      });
+    });
+  });
+</script>

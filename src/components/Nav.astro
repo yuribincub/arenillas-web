@@ -1,0 +1,287 @@
+---
+// src/components/Nav.astro
+// Navegación actualizada — misma estética, nueva arquitectura de contenidos
+
+const currentPath = Astro.url.pathname;
+
+const navGroups = [
+  {
+    label: 'Descubrir',
+    href: '/el-pueblo',
+    dropdown: [
+      { href: '/el-pueblo',            label: 'El pueblo',         desc: 'Historia, arquitectura y comunidad' },
+      { href: '/turismo',              label: 'Turismo',           desc: 'Qué ver y qué hacer' },
+      { href: '/boina-fest',           label: 'Boina Fest',        desc: 'Festival de música · Agosto' },
+      { href: '/galeria',              label: 'Galería',           desc: 'Imágenes del pueblo' },
+    ],
+  },
+  {
+    label: 'Actualidad',
+    href: '/actualidad',
+    dropdown: [
+      { href: '/actualidad',           label: 'Noticias',          desc: 'Lo que pasa en Arenillas' },
+      { href: '/agenda',               label: 'Agenda',            desc: 'Eventos y actividades' },
+      { href: '/actualidad#bandos',    label: 'Bandos y avisos',   desc: 'Comunicados oficiales' },
+    ],
+  },
+  {
+    label: 'Servicios',
+    href: '/servicios',
+    dropdown: [
+      { href: '/servicios',            label: 'Servicios locales', desc: 'Información práctica' },
+      { href: '/servicios#ayuntamiento', label: 'Ayuntamiento',   desc: 'Trámites y contacto' },
+      { href: '/servicios#sanitario',  label: 'Consultorio',       desc: 'Salud y farmacia' },
+      { href: '/servicios#transporte', label: 'Transporte',        desc: 'Cómo moverse' },
+      { href: '/servicios#telefonos',  label: 'Teléfonos útiles',  desc: 'Directorio rápido' },
+    ],
+  },
+  {
+    label: 'Negocios',
+    href: '/negocios',
+    single: true,
+  },
+  {
+    label: 'Vivir aquí',
+    href: '/vivir-aqui',
+    single: true,
+  },
+  {
+    label: 'Contacto',
+    href: '/contacto',
+    single: true,
+  },
+];
+---
+
+<header
+  id="nav"
+  class="fixed top-0 left-0 right-0 z-50 transition-all duration-300
+         bg-crema/95 backdrop-blur-md shadow-sm border-b border-lavanda-light/20"
+  data-scrolled="false"
+>
+  <div class="container-brand">
+    <nav class="flex items-center justify-between h-16 md:h-20" aria-label="Navegación principal">
+
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3 group shrink-0" aria-label="Inicio — Arenillas">
+        <svg width="34" height="38" viewBox="0 0 36 40" fill="none" xmlns="http://www.w3.org/2000/svg"
+             class="text-lavanda-deep group-hover:text-lavanda transition-colors duration-300 nav-icon-color" aria-hidden="true">
+          <line x1="0" y1="22" x2="36" y2="22" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="9"  y1="22" x2="9"  y2="8"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="9"  cy="7"  r="1.5" fill="currentColor"/>
+          <circle cx="6"  cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="12" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="7"  cy="14" r="1.2" fill="currentColor"/>
+          <circle cx="11" cy="14" r="1.2" fill="currentColor"/>
+          <line x1="18" y1="22" x2="18" y2="5"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="18" cy="4"  r="1.5" fill="currentColor"/>
+          <circle cx="15" cy="7"  r="1.2" fill="currentColor"/>
+          <circle cx="21" cy="7"  r="1.2" fill="currentColor"/>
+          <circle cx="16" cy="11" r="1.2" fill="currentColor"/>
+          <circle cx="20" cy="11" r="1.2" fill="currentColor"/>
+          <circle cx="17" cy="15" r="1.2" fill="currentColor"/>
+          <circle cx="19" cy="15" r="1.2" fill="currentColor"/>
+          <line x1="27" y1="22" x2="27" y2="8"  stroke="currentColor" stroke-width="1.2"/>
+          <circle cx="27" cy="7"  r="1.5" fill="currentColor"/>
+          <circle cx="24" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="30" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="25" cy="14" r="1.2" fill="currentColor"/>
+          <circle cx="29" cy="14" r="1.2" fill="currentColor"/>
+        </svg>
+        <div>
+          <span class="block font-serif font-bold text-lg leading-tight tracking-wide nav-text-color transition-colors duration-500">
+            Arenillas
+          </span>
+          <span class="block font-sans text-[9px] tracking-[0.3em] uppercase nav-sub-color transition-colors duration-500">
+            Soria
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop links con dropdowns -->
+      <ul class="hidden lg:flex items-center gap-1" role="list">
+        {navGroups.map(group => (
+          <li class="relative group/nav">
+            {group.single ? (
+              <a
+                href={group.href}
+                class:list={[
+                  'px-3 py-2 font-sans text-sm font-medium tracking-wide rounded-full transition-all duration-200 block',
+                  currentPath.startsWith(group.href)
+                    ? 'bg-lavanda-pale text-lavanda-deep'
+                    : 'nav-link-color hover:bg-white/10 hover:text-lavanda-light'
+                ]}
+                aria-current={currentPath.startsWith(group.href) ? 'page' : undefined}
+              >
+                {group.label}
+              </a>
+            ) : (
+              <>
+                <button
+                  class:list={[
+                    'px-3 py-2 font-sans text-sm font-medium tracking-wide rounded-full transition-all duration-200',
+                    'inline-flex items-center gap-1',
+                    group.dropdown?.some(l => currentPath.startsWith(l.href))
+                      ? 'bg-lavanda-pale text-lavanda-deep'
+                      : 'nav-link-color hover:bg-white/10 hover:text-lavanda-light'
+                  ]}
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  {group.label}
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                       stroke-width="1.5" class="transition-transform duration-200 group-hover/nav:rotate-180" aria-hidden="true">
+                    <path d="M2 4l4 4 4-4"/>
+                  </svg>
+                </button>
+
+                <!-- Dropdown -->
+                <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3
+                            opacity-0 invisible group-hover/nav:opacity-100 group-hover/nav:visible
+                            transition-all duration-200 min-w-[260px]">
+                  <div class="bg-crema rounded-2xl shadow-xl shadow-carbon/15 border border-grisclaro/30 p-2 overflow-hidden">
+                    {group.dropdown?.map(link => (
+                      <a
+                        href={link.href}
+                        class:list={[
+                          'flex flex-col px-4 py-3 rounded-xl transition-all duration-150',
+                          currentPath === link.href
+                            ? 'bg-lavanda-pale'
+                            : 'hover:bg-lavanda-pale/60'
+                        ]}
+                      >
+                        <span class="font-sans text-sm font-semibold text-carbon">{link.label}</span>
+                        <span class="font-sans text-xs text-humo mt-0.5">{link.desc}</span>
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+
+      <!-- CTA Desktop -->
+      <a href="/contacto" class="hidden lg:inline-flex btn-primary text-sm py-2.5 px-5 shrink-0">
+        Escríbenos
+      </a>
+
+      <!-- Mobile menu button -->
+      <button
+        id="menu-btn"
+        class="lg:hidden flex flex-col gap-1.5 p-2 group"
+        aria-label="Abrir menú"
+        aria-expanded="false"
+      >
+        <span class="block w-6 h-px nav-bar-color transition-all duration-300"></span>
+        <span class="block w-6 h-px nav-bar-color transition-all duration-300"></span>
+        <span class="block w-6 h-px nav-bar-color transition-all duration-300"></span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Mobile menu — full panel, fondo sólido garantizado -->
+  <div
+    id="mobile-menu"
+    class="hidden lg:hidden absolute top-full left-0 right-0
+           bg-crema shadow-xl shadow-carbon/10
+           border-t border-lavanda-light/30 max-h-[80vh] overflow-y-auto"
+    aria-hidden="true"
+  >
+    <div class="container-brand py-6">
+      <!-- Grupos -->
+      {navGroups.map(group => (
+        <div class="mb-2">
+          {group.single ? (
+            <a
+              href={group.href}
+              class="flex items-center px-4 py-3 font-sans font-semibold text-base text-carbon
+                     hover:text-lavanda-deep hover:bg-lavanda-pale rounded-xl transition-all"
+            >
+              {group.label}
+            </a>
+          ) : (
+            <details class="group/mobile">
+              <summary class="flex items-center justify-between px-4 py-3 font-sans font-semibold
+                             text-base text-carbon hover:text-lavanda-deep hover:bg-lavanda-pale
+                             rounded-xl transition-all cursor-pointer list-none">
+                {group.label}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor"
+                     stroke-width="1.5" class="transition-transform group-open/mobile:rotate-180" aria-hidden="true">
+                  <path d="M2 5l5 5 5-5"/>
+                </svg>
+              </summary>
+              <div class="pl-4 mt-1 space-y-0.5">
+                {group.dropdown?.map(link => (
+                  <a
+                    href={link.href}
+                    class="flex flex-col px-4 py-2.5 rounded-lg hover:bg-lavanda-pale/70 transition-all"
+                  >
+                    <span class="font-sans text-sm font-medium text-carbon">{link.label}</span>
+                    <span class="font-sans text-xs text-humo">{link.desc}</span>
+                  </a>
+                ))}
+              </div>
+            </details>
+          )}
+        </div>
+      ))}
+
+      <div class="pt-4 border-t border-lavanda-light/30 mt-2">
+        <a href="/contacto" class="btn-primary w-full justify-center">Escríbenos</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="h-16 md:h-20" aria-hidden="true"></div>
+
+<script>
+  const nav    = document.getElementById('nav')!;
+  const isHome = window.location.pathname === '/';
+
+  function setTransparent() {
+    nav.classList.remove('bg-crema/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-lavanda-light/20');
+    nav.dataset.scrolled = 'false';
+  }
+
+  function setSolid() {
+    nav.classList.add('bg-crema/95', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-lavanda-light/20');
+    nav.dataset.scrolled = 'true';
+  }
+
+  function updateNav() {
+    if (isHome && window.scrollY < 40) {
+      setTransparent();
+    } else {
+      setSolid();
+    }
+  }
+
+  // Aplicar inmediatamente sin esperar al scroll
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  // Mobile menu
+  const menuBtn    = document.getElementById('menu-btn')!;
+  const mobileMenu = document.getElementById('mobile-menu')!;
+
+  menuBtn.addEventListener('click', () => {
+    const willOpen = mobileMenu.classList.contains('hidden');
+    mobileMenu.classList.toggle('hidden');
+    mobileMenu.setAttribute('aria-hidden', String(!willOpen));
+    menuBtn.setAttribute('aria-expanded', String(willOpen));
+    // Cuando el móvil abre, forzar fondo sólido en el header también
+    if (willOpen) setSolid();
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      // Re-evaluar estado del nav al cerrar
+      updateNav();
+    })
+  );
+</script>

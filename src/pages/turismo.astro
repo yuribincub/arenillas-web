@@ -1,0 +1,402 @@
+---
+// src/pages/turismo.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+    title="Turismo · Arenillas, Soria — Qué ver y qué hacer"
+    description="Descubre qué ver y qué hacer en Arenillas. Rutas de espliego, senderismo, patrimonio, gastronomía y turismo rural auténtico en Soria, Castilla y León."
+>
+    <!-- Hero -->
+    <section
+        class="relative min-h-[55vh] flex items-end bg-carbon overflow-hidden"
+    >
+        <div class="absolute inset-0">
+            <img
+                src="/images/turismo-hero.jpg"
+                alt="Paisaje de Arenillas con campos de espliego y horizonte castellano"
+                class="w-full h-full object-cover opacity-65"
+                loading="eager"
+            />
+            <div
+                class="absolute inset-0 bg-gradient-to-t from-carbon/85 via-carbon/30 to-transparent"
+            >
+            </div>
+        </div>
+        <div class="relative z-10 container-brand pb-16 md:pb-20">
+            <p class="section-label text-lavanda-light mb-4">
+                Visita Arenillas
+            </p>
+            <h1
+                class="font-serif font-bold text-crema"
+                style="font-size: clamp(2.5rem,7vw,5rem); line-height:1.05;"
+            >
+                Turismo rural<br /><em class="not-italic text-lavanda-light"
+                    >auténtico</em
+                >
+            </h1>
+            <p class="font-serif italic text-lg text-crema/70 mt-3 max-w-md">
+                Un lugar donde venir a perderse y volver encontrado.
+            </p>
+        </div>
+    </section>
+
+    <!-- Intro info rápida -->
+    <section class="bg-lavanda-deep text-crema py-8">
+        <div class="container-brand">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
+                {
+                    [
+                        {
+                            icon: "📍",
+                            label: "Ubicación",
+                            value: "Tierras Altas · Soria",
+                        },
+                        { icon: "🏔️", label: "Altitud", value: "1.100 m" },
+                        {
+                            icon: "🕐",
+                            label: "Desde Madrid",
+                            value: "2h 30min",
+                        },
+                        {
+                            icon: "🌿",
+                            label: "Temporada espliego",
+                            value: "Junio · Julio",
+                        },
+                    ].map((item) => (
+                        <div class="text-center">
+                            <span
+                                class="text-2xl block mb-2"
+                                aria-hidden="true"
+                            >
+                                {item.icon}
+                            </span>
+                            <p class="font-sans text-xs tracking-[0.2em] uppercase text-lavanda-light mb-1">
+                                {item.label}
+                            </p>
+                            <p class="font-serif font-bold text-crema text-sm md:text-base">
+                                {item.value}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiencias principales -->
+    <section class="section bg-crema" aria-labelledby="experiencias-heading">
+        <div class="container-brand">
+            <div class="max-w-xl mb-12 reveal">
+                <p class="section-label mb-4">Qué hacer</p>
+                <h2 id="experiencias-heading" class="text-heading text-carbon">
+                    Experiencias para recordar
+                </h2>
+            </div>
+
+            <!-- Ruta del Espliego — destacada -->
+            <div
+                id="espliego"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-20 scroll-mt-24"
+            >
+                <div class="reveal">
+                    <div
+                        class="aspect-[5/4] rounded-2xl overflow-hidden bg-lavanda-pale"
+                    >
+                        <img
+                            src="/images/turismo-espliego.jpg"
+                            alt="Campos de espliego en flor en Arenillas"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+                <div class="reveal reveal-delay-1">
+                    <span class="tag tag-lavanda mb-4 inline-block"
+                        >Naturaleza · Primavera / Verano</span
+                    >
+                    <h3
+                        class="font-serif font-bold text-carbon mb-4"
+                        style="font-size:clamp(1.6rem,3vw,2.2rem);"
+                    >
+                        Ruta del Espliego
+                    </h3>
+                    <p class="font-sans text-humo leading-relaxed mb-4">
+                        Cuando llega junio, los alrededores de Arenillas se
+                        cubren de lavanda. La ruta circular de 4 km atraviesa
+                        los campos en flor con vistas al horizonte soriano que
+                        hacen que el silencio valga mucho más que cualquier
+                        ruido.
+                    </p>
+                    <ul class="font-sans text-sm text-humo space-y-2 mb-8">
+                        <li class="flex items-center gap-2">
+                            <span class="text-lavanda">→</span> Distancia: 4 km circular
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-lavanda">→</span> Dificultad: baja
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-lavanda">→</span> Duración: 1h 30min
+                            aprox.
+                        </li>
+                        <li class="flex items-center gap-2">
+                            <span class="text-lavanda">→</span> Mejor época: junio
+                            y julio
+                        </li>
+                    </ul>
+                    <a href="/contacto?asunto=ruta-espliego" class="btn-primary"
+                        >Solicitar mapa de la ruta</a
+                    >
+                </div>
+            </div>
+
+            <!-- Destilación -->
+            <div
+                id="destilacion"
+                class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-20 scroll-mt-24"
+            >
+                <div class="order-1 lg:order-2 reveal">
+                    <div
+                        class="aspect-[5/4] rounded-2xl overflow-hidden bg-tierra-arena"
+                    >
+                        <img
+                            src="/images/turismo-destilacion.jpg"
+                            alt="Destilación artesanal de espliego"
+                            class="w-full h-full object-cover"
+                            loading="lazy"
+                        />
+                    </div>
+                </div>
+                <div class="order-2 lg:order-1 reveal reveal-delay-1">
+                    <span class="tag tag-tierra mb-4 inline-block"
+                        >Artesanía · Todo el año</span
+                    >
+                    <h3
+                        class="font-serif font-bold text-carbon mb-4"
+                        style="font-size:clamp(1.6rem,3vw,2.2rem);"
+                    >
+                        Destilación de lavanda
+                    </h3>
+                    <p class="font-sans text-humo leading-relaxed mb-4">
+                        La destilación del espliego es una tradición que
+                        Arenillas ha heredado y preservado. El proceso,
+                        fascinante en su sencillez, transforma las flores
+                        frescas en el aceite esencial que perfuma la identidad
+                        del pueblo.
+                    </p>
+                    <p class="font-sans text-humo leading-relaxed mb-8">
+                        Puedes conocer el proceso durante la temporada de
+                        recogida. Contacta con el ayuntamiento para organizar
+                        una visita.
+                    </p>
+                    <a href="/contacto?asunto=destilacion" class="btn-outline"
+                        >Organizar visita</a
+                    >
+                </div>
+            </div>
+
+            <!-- Rutas senderismo -->
+            <div id="rutas" class="scroll-mt-24">
+                <div class="max-w-xl mb-10 reveal">
+                    <h3 class="font-serif font-bold text-2xl text-carbon mb-3">
+                        Rutas por el entorno
+                    </h3>
+                    <p class="font-sans text-humo leading-relaxed">
+                        El entorno de Arenillas ofrece varios recorridos entre
+                        campos, valles y páramos sorianos. Para todos los
+                        niveles y todas las temporadas.
+                    </p>
+                </div>
+
+                <div
+                    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+                >
+                    {
+                        [
+                            {
+                                title: "Ruta del horizonte",
+                                km: "6 km",
+                                dif: "Media",
+                                tiempo: "2h",
+                                text: "Panorámica desde el alto con vistas a más de 50 km en días despejados.",
+                                color: "musgo",
+                            },
+                            {
+                                title: "Camino del río",
+                                km: "3 km",
+                                dif: "Baja",
+                                tiempo: "1h",
+                                text: "Paseo tranquilo junto al cauce entre álamos y chopos.",
+                                color: "cielo",
+                            },
+                            {
+                                title: "Ruta de los molinos",
+                                km: "8 km",
+                                dif: "Media-alta",
+                                tiempo: "3h",
+                                text: "Recorre los antiguos molinos de viento del término municipal.",
+                                color: "tierra",
+                            },
+                        ].map((ruta, i) => (
+                            <article
+                                class={`reveal reveal-delay-${i} card p-6`}
+                            >
+                                <div
+                                    class={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-sans font-semibold mb-4
+                           ${
+                               ruta.color === "musgo"
+                                   ? "bg-musgo/10 text-musgo"
+                                   : ruta.color === "tierra"
+                                     ? "bg-tierra-arena text-tierra-dark"
+                                     : "bg-cielo/20 text-lavanda-deep"
+                           }`}
+                                >
+                                    Senderismo
+                                </div>
+                                <h4 class="font-serif font-bold text-lg text-carbon mb-2">
+                                    {ruta.title}
+                                </h4>
+                                <p class="font-sans text-sm text-humo mb-4">
+                                    {ruta.text}
+                                </p>
+                                <div class="flex gap-4 text-xs font-sans text-humo border-t border-grisclaro pt-4">
+                                    <span>{ruta.km}</span>
+                                    <span>·</span>
+                                    <span>Dif. {ruta.dif}</span>
+                                    <span>·</span>
+                                    <span>{ruta.tiempo}</span>
+                                </div>
+                            </article>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Arquitectura -->
+    <section
+        class="section bg-lavanda-pale/40"
+        id="arquitectura"
+        aria-labelledby="arq-heading"
+    >
+        <div class="container-brand">
+            <div class="max-w-xl mb-10 reveal">
+                <p class="section-label mb-3">Patrimonio</p>
+                <h2 id="arq-heading" class="text-heading text-carbon">
+                    Qué ver en el pueblo
+                </h2>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {
+                    [
+                        {
+                            title: "Iglesia medieval",
+                            img: "/images/ver-iglesia.jpg",
+                            alt: "Iglesia parroquial de Arenillas",
+                        },
+                        {
+                            title: "Calles históricas",
+                            img: "/images/ver-calles.jpg",
+                            alt: "Calles empedradas del pueblo",
+                        },
+                        {
+                            title: "Plaza mayor",
+                            img: "/images/ver-plaza.jpg",
+                            alt: "Plaza mayor de Arenillas",
+                        },
+                        {
+                            title: "Miradores",
+                            img: "/images/ver-mirador.jpg",
+                            alt: "Mirador con vistas al horizonte soriano",
+                        },
+                    ].map((item, i) => (
+                        <div
+                            class={`reveal reveal-delay-${i} group cursor-pointer`}
+                        >
+                            <div class="aspect-square rounded-xl overflow-hidden bg-lavanda-pale mb-3">
+                                <img
+                                    src={item.img}
+                                    alt={item.alt}
+                                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                    loading="lazy"
+                                />
+                            </div>
+                            <p class="font-serif text-sm text-carbon text-center">
+                                {item.title}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Cómo llegar -->
+    <section class="section bg-crema" aria-labelledby="llegar-heading">
+        <div class="container-brand max-w-3xl">
+            <div class="reveal mb-8">
+                <p class="section-label mb-3">Información práctica</p>
+                <h2 id="llegar-heading" class="text-heading text-carbon">
+                    Cómo llegar
+                </h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {
+                    [
+                        {
+                            modo: "En coche",
+                            icon: "🚗",
+                            desc: "Desde Madrid por la A-2 y N-122: aprox. 2h 30min. Desde Soria capital: 45 min por la SO-615.",
+                        },
+                        {
+                            modo: "En autobús",
+                            icon: "🚌",
+                            desc: "Servicios regulares desde Soria con parada en municipios cercanos. Consultar horarios en la Diputación.",
+                        },
+                        {
+                            modo: "Coordenadas",
+                            icon: "📍",
+                            desc: "41°43'N 2°23'W · Municipio de Arenillas, comarca Tierras Altas, provincia de Soria.",
+                        },
+                    ].map((item, i) => (
+                        <div
+                            class={`reveal reveal-delay-${i} p-6 rounded-2xl bg-lavanda-pale`}
+                        >
+                            <span
+                                class="text-3xl block mb-3"
+                                aria-hidden="true"
+                            >
+                                {item.icon}
+                            </span>
+                            <h3 class="font-serif font-bold text-carbon mb-2">
+                                {item.modo}
+                            </h3>
+                            <p class="font-sans text-sm text-humo leading-relaxed">
+                                {item.desc}
+                            </p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section-sm bg-lavanda-deep text-crema">
+        <div class="container-brand text-center">
+            <h2 class="font-serif font-bold text-2xl text-crema mb-4 reveal">
+                ¿Listo para visitar Arenillas?
+            </h2>
+            <p class="font-sans text-crema/70 mb-8 reveal reveal-delay-1">
+                Escríbenos y te ayudamos a planificar tu visita.
+            </p>
+            <a
+                href="/contacto"
+                class="btn-primary bg-crema text-lavanda-deep hover:bg-lavanda-light reveal reveal-delay-2"
+            >
+                Contactar
+            </a>
+        </div>
+    </section>
+</Layout>

@@ -1,0 +1,195 @@
+---
+import { imageLibrary } from '../data/images.js';
+// src/components/Actualidad.astro
+// Noticias, eventos y vida del pueblo — estilo editorial, no tablón institucional.
+// Los datos vendrían de un CMS, Notion API, o archivo JSON. Aquí: datos de ejemplo.
+
+interface Item {
+  tipo: 'noticia' | 'evento' | 'bando' | 'aviso';
+  titulo: string;
+  extracto: string;
+  fecha: string;
+  href: string;
+  destacado?: boolean;
+}
+
+const items: Item[] = [
+  {
+    tipo: 'evento',
+    titulo: 'Boina Fest 2025 — Convocatoria abierta',
+    extracto: 'Ya están abiertas las inscripciones para la 8ª edición del festival. Este año se amplía el escenario y se añaden talleres de artesanía local.',
+    fecha: '12 mayo 2025',
+    href: '/actualidad/boina-fest-2025',
+    destacado: true,
+  },
+  {
+    tipo: 'bando',
+    titulo: 'Corte de agua el 18 de mayo — Mantenimiento red',
+    extracto: 'El servicio de aguas realizará trabajos de mantenimiento en la red principal. Se prevé corte entre las 9:00 y las 14:00h.',
+    fecha: '10 mayo 2025',
+    href: '/actualidad/corte-agua-mayo',
+  },
+  {
+    tipo: 'noticia',
+    titulo: 'Nueva ruta senderismo señalizada en el entorno',
+    extracto: 'La Diputación de Soria ha señalizado un nuevo tramo de ruta circular de 8 km que conecta Arenillas con los molinos del término.',
+    fecha: '5 mayo 2025',
+    href: '/actualidad/nueva-ruta-senderismo',
+  },
+  {
+    tipo: 'evento',
+    titulo: 'Mercado de espliego · Tercer domingo de junio',
+    extracto: 'Productores locales, destilados artesanales, cosmética natural y gastronomía soriana. El mercado de espliego vuelve a la plaza.',
+    fecha: '1 mayo 2025',
+    href: '/actualidad/mercado-espliego-2025',
+  },
+  {
+    tipo: 'aviso',
+    titulo: 'Plazo abierto: subvenciones rehabilitación fachadas',
+    extracto: 'Hasta el 30 de junio. El Ayuntamiento gestiona las solicitudes de la convocatoria de la Junta de Castilla y León para rehabilitación de fachadas en municipios rurales.',
+    fecha: '28 abril 2025',
+    href: '/actualidad/subvenciones-fachadas-2025',
+  },
+];
+
+const tipoConfig: Record<Item['tipo'], { label: string; color: string; dot: string }> = {
+  noticia: { label: 'Noticia',  color: 'tag-lavanda', dot: 'bg-lavanda-deep' },
+  evento:  { label: 'Evento',   color: 'tag-tierra',  dot: 'bg-tierra' },
+  bando:   { label: 'Bando',    color: 'bg-carbon/10 text-carbon', dot: 'bg-carbon' },
+  aviso:   { label: 'Aviso',    color: 'bg-musgo/10 text-musgo',   dot: 'bg-musgo' },
+};
+
+const destacado = items.find(i => i.destacado);
+const resto = items.filter(i => !i.destacado).slice(0, 4);
+---
+
+<section class="section bg-crema border-t border-lavanda-light/20" aria-labelledby="actualidad-heading">
+  <div class="container-brand">
+
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 reveal">
+      <div>
+        <p class="section-label mb-3">Vida del pueblo</p>
+        <h2 id="actualidad-heading" class="text-heading text-carbon">
+          Actualidad
+        </h2>
+      </div>
+      <a href="/actualidad" class="btn-ghost self-start sm:self-auto">
+        Ver todo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-5">
+
+      <!-- Noticia destacada — grande -->
+      {destacado && (
+        <article class="lg:col-span-3 reveal">
+          <a
+            href={destacado.href}
+            class="group block h-full bg-lavanda-deep text-crema rounded-2xl overflow-hidden
+                   hover:shadow-xl hover:shadow-lavanda-deep/30 transition-all duration-400 focus-visible:ring-2 focus-visible:ring-lavanda"
+          >
+            <!-- Foto placeholder -->
+            <div class="aspect-video overflow-hidden bg-lavanda opacity-80">
+              <img
+                src={imageLibrary.boinaFestFeatured.src}
+                alt={destacado.titulo}
+                class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-lavanda-deep/90 to-transparent"></div>
+            </div>
+            <div class="relative p-8">
+              <div class="flex items-center gap-3 mb-4">
+                <span class={`tag ${tipoConfig[destacado.tipo].color}`}>
+                  {tipoConfig[destacado.tipo].label}
+                </span>
+                <span class="font-sans text-xs text-lavanda-light">{destacado.fecha}</span>
+              </div>
+              <h3 class="font-serif font-bold text-xl text-crema mb-3 group-hover:text-lavanda-light transition-colors leading-snug">
+                {destacado.titulo}
+              </h3>
+              <p class="font-sans text-sm text-crema/70 leading-relaxed mb-6">
+                {destacado.extracto}
+              </p>
+              <span class="btn-ghost text-crema hover:text-lavanda-light text-xs">
+                Leer más
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </div>
+          </a>
+        </article>
+      )}
+
+      <!-- Lista de noticias secundarias -->
+      <div class="lg:col-span-2 flex flex-col gap-3">
+        {resto.map((item, i) => (
+          <article class={`reveal reveal-delay-${i}`}>
+            <a
+              href={item.href}
+              class="group flex gap-4 p-5 bg-white rounded-2xl border border-grisclaro/40
+                     hover:border-lavanda-light hover:shadow-md hover:shadow-lavanda/10
+                     transition-all duration-300 focus-visible:ring-2 focus-visible:ring-lavanda-deep"
+            >
+              <!-- Dot tipo -->
+              <div class="shrink-0 mt-1.5">
+                <span class:list={['block w-2 h-2 rounded-full mt-0.5', tipoConfig[item.tipo].dot]}></span>
+              </div>
+
+              <div class="min-w-0">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class={`tag text-[9px] py-0.5 ${tipoConfig[item.tipo].color}`}>
+                    {tipoConfig[item.tipo].label}
+                  </span>
+                  <span class="font-sans text-[10px] text-grisclaro shrink-0">{item.fecha}</span>
+                </div>
+                <h3 class="font-serif font-bold text-sm text-carbon leading-snug mb-1.5
+                           group-hover:text-lavanda-deep transition-colors line-clamp-2">
+                  {item.titulo}
+                </h3>
+                <p class="font-sans text-xs text-humo leading-relaxed line-clamp-2">
+                  {item.extracto}
+                </p>
+              </div>
+
+              <div class="shrink-0 self-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+                     stroke-width="1.5" class="text-lavanda-deep" aria-hidden="true">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          </article>
+        ))}
+
+        <!-- Ver agenda -->
+        <a
+          href="/agenda"
+          class="reveal group flex items-center justify-between gap-4 p-5 rounded-2xl
+                 border border-dashed border-lavanda-light/60 text-lavanda-deep
+                 hover:bg-lavanda-pale/60 hover:border-lavanda transition-all duration-300"
+        >
+          <div class="flex items-center gap-3">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="1.4" stroke-linecap="round" aria-hidden="true">
+              <rect x="3" y="4" width="18" height="18" rx="2"/>
+              <line x1="16" y1="2" x2="16" y2="6"/>
+              <line x1="8" y1="2" x2="8" y2="6"/>
+              <line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            <span class="font-sans text-sm font-semibold">Ver agenda completa</span>
+          </div>
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+               stroke-width="1.5" class="opacity-60 group-hover:opacity-100 transition-opacity" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

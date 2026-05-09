@@ -1,0 +1,176 @@
+---
+import { imageLibrary } from '../data/images.js';
+// src/components/SectionPueblo.astro
+---
+
+<section class="section bg-crema" aria-labelledby="pueblo-heading">
+  <div class="container-brand">
+    <!-- Header -->
+    <div class="max-w-2xl mb-16 md:mb-20 reveal">
+      <p class="section-label mb-4">El pueblo</p>
+      <h2 id="pueblo-heading" class="text-heading text-carbon mb-6">
+        Pequeños en número.<br />
+        <em class="not-italic text-lavanda-deep">Inmensos en todo lo demás.</em>
+      </h2>
+      <span class="deco-line mb-6 animate-line-grow"></span>
+      <p class="text-lead">
+        Arenillas es un pueblo de Soria que ha elegido existir con dignidad. Sus
+        campos de espliego, su arquitectura de piedra y su comunidad unida
+        forman una identidad que el tiempo no ha podido borrar.
+      </p>
+    </div>
+
+    <!-- Grid de valores / pilares -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
+      {
+        [
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+            <path d="M14 2 L14 18 M8 10 L14 6 L20 10 M5 18 L23 18 M5 22 L23 22"/>
+          </svg>`,
+            tag: "Comunidad",
+            title: "Un pueblo que se conoce",
+            text: "Aquí la gente se saluda por su nombre. La comunidad es el activo más valioso de Arenillas, su fuerza invisible y permanente.",
+            color: "lavanda",
+          },
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+            <line x1="4" y1="16" x2="24" y2="16"/>
+            <line x1="9" y1="16" x2="9" y2="4"/><circle cx="9" cy="3" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="6" cy="6" r="1.2" fill="currentColor" stroke="none"/><circle cx="12" cy="6" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="7" cy="9" r="1.2" fill="currentColor" stroke="none"/><circle cx="11" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+            <line x1="14" y1="16" x2="14" y2="2"/><circle cx="14" cy="1" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="11" cy="4" r="1.2" fill="currentColor" stroke="none"/><circle cx="17" cy="4" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="12" cy="7" r="1.2" fill="currentColor" stroke="none"/><circle cx="16" cy="7" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="13" cy="10" r="1.2" fill="currentColor" stroke="none"/><circle cx="15" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+            <line x1="19" y1="16" x2="19" y2="4"/><circle cx="19" cy="3" r="1.5" fill="currentColor" stroke="none"/>
+            <circle cx="16" cy="6" r="1.2" fill="currentColor" stroke="none"/><circle cx="22" cy="6" r="1.2" fill="currentColor" stroke="none"/>
+            <circle cx="17" cy="9" r="1.2" fill="currentColor" stroke="none"/><circle cx="21" cy="9" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>`,
+            tag: "Naturaleza",
+            title: "El espliego como identidad",
+            text: "Los campos de lavanda que rodean Arenillas son más que un paisaje: son el aroma de un pueblo que sabe quién es.",
+            color: "tierra",
+          },
+          {
+            icon: `<svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round">
+            <rect x="4" y="10" width="20" height="14" rx="2"/>
+            <path d="M4 14 L14 8 L24 14"/>
+            <rect x="11" y="16" width="6" height="8"/>
+            <line x1="14" y1="4" x2="14" y2="8"/>
+            <line x1="12" y1="5" x2="16" y2="7"/>
+          </svg>`,
+            tag: "Resistencia",
+            title: "Quedarse también es valentía",
+            text: "Seguir existiendo cuando todo empuja al abandono es un acto de coraje. Arenillas resiste con orgullo y dignidad.",
+            color: "musgo",
+          },
+        ].map((item, i) => (
+          <article class={`reveal reveal-delay-${i + 1} group`}>
+            <div
+              class="h-full p-8 rounded-2xl bg-white border border-grisclaro/40
+                      hover:border-lavanda-light hover:shadow-lg hover:shadow-lavanda/10
+                      transition-all duration-400 flex flex-col gap-5"
+            >
+              <div
+                class={`w-14 h-14 rounded-xl flex items-center justify-center
+                         ${
+                           item.color === "lavanda"
+                             ? "bg-lavanda-pale text-lavanda-deep"
+                             : item.color === "tierra"
+                               ? "bg-tierra-arena text-tierra-dark"
+                               : "bg-musgo/10 text-musgo"
+                         }`}
+                set:html={item.icon}
+              />
+              <div>
+                <span
+                  class={`tag mb-3 ${item.color === "lavanda" ? "tag-lavanda" : item.color === "tierra" ? "tag-tierra" : "tag-musgo"}`}
+                >
+                  {item.tag}
+                </span>
+                <h3 class="font-serif font-bold text-xl text-carbon mb-3 group-hover:text-lavanda-deep transition-colors">
+                  {item.title}
+                </h3>
+                <p class="font-sans text-sm text-humo leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+
+    <!-- Foto + texto: historia visual -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Imagen -->
+      <div class="relative reveal">
+        <div class="aspect-[4/5] rounded-2xl overflow-hidden bg-lavanda-pale">
+          <img
+            src={imageLibrary.puebloArchitecture.src}
+            alt={imageLibrary.puebloArchitecture.alt}
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+            loading="lazy"
+          />
+        </div>
+        <!-- Floating stat -->
+        <div
+          class="absolute -bottom-6 -right-6 md:bottom-8 md:-right-8
+                    bg-lavanda-deep text-crema rounded-2xl p-6 shadow-xl"
+        >
+          <p class="font-serif text-4xl font-bold leading-none">s. XII</p>
+          <p
+            class="font-sans text-xs tracking-wider uppercase text-lavanda-light mt-1"
+          >
+            Fundación
+          </p>
+        </div>
+      </div>
+
+      <!-- Texto -->
+      <div class="reveal reveal-delay-2">
+        <p class="section-label mb-4">Historia</p>
+        <h2 class="text-title font-serif font-bold text-carbon mb-6">
+          Una historia que se escribe<br /> con calma y constancia
+        </h2>
+        <div
+          class="space-y-4 text-humo font-sans text-base leading-relaxed mb-8"
+        >
+          <p>
+            Arenillas nació como tantos pueblos de Castilla: junto a un camino,
+            al abrigo de un cerro, con el río cerca y el horizonte siempre a la
+            vista. Siglos de historia han ido tallando una identidad que no
+            necesita grandes gestos para hacerse notar.
+          </p>
+          <p>
+            Su arquitectura de piedra caliza, sus calles de trazado medieval y
+            la iglesia que preside la plaza son testigos de que aquí la
+            permanencia tiene más valor que la novedad.
+          </p>
+          <p>
+            Hoy, Arenillas sigue siendo fiel a sí mismo. Y eso, en un mundo que
+            cambia sin parar, es el lujo más auténtico que existe.
+          </p>
+        </div>
+        <a href="/el-pueblo" class="btn-outline">
+          Conoce el pueblo
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M3 8h10M9 4l4 4-4 4"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

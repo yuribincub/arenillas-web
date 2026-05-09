@@ -1,0 +1,178 @@
+---
+// src/components/NegociosLocales.astro
+// "Quién da vida a Arenillas" — directorio humano, no corporativo.
+import { imageLibrary } from "../data/images.js"; 
+
+interface Negocio {
+  nombre: string;
+  tipo: string;
+  descripcion: string;
+  horario?: string;
+  telefono?: string;
+  instagram?: string;
+  href?: string;
+  img: string;
+  alt: string;
+  tag: 'Hostelería' | 'Artesanía' | 'Alojamiento' | 'Servicio' | 'Producción';
+}
+
+const negocios: Negocio[] = [
+  {
+    nombre: 'Bar El Horizonte',
+    tipo: 'Bar · Restaurante',
+    descripcion: 'El punto de encuentro del pueblo. Cocina casera soriana, vino de la tierra y conversación garantizada.',
+    horario: 'L–D · 9:00–23:00',
+    telefono: '975 000 001',
+    img: imageLibrary.barFeatured.src,
+    alt: imageLibrary.barFeatured.alt,
+    tag: 'Hostelería',
+  },
+  {
+    nombre: 'Espliego de Arenillas',
+    tipo: 'Destilería artesanal',
+    descripcion: 'Aceites esenciales, aguas florales y cosmética natural producida con el espliego del pueblo. Todo artesanal.',
+    horario: 'Mar–Sáb · 10:00–14:00',
+    instagram: '@espliego_arenillas',
+    img: imageLibrary.destilacionEspliegoFeatured.src,
+    alt: imageLibrary.destilacionEspliegoFeatured.alt,
+    tag: 'Artesanía',
+  },
+  {
+    nombre: 'Casa Rural La Piedra',
+    tipo: 'Alojamiento rural',
+    descripcion: 'Casa de piedra del siglo XVIII restaurada con sensibilidad. Cuatro habitaciones, jardín y vistas al horizonte.',
+    telefono: '975 000 002',
+    href: 'https://casarurallapiedra.es',
+    img: imageLibrary.fachadaCasaFeatured.src,
+    alt: imageLibrary.fachadaCasaFeatured.alt,
+    tag: 'Alojamiento',
+  },
+  {
+    nombre: 'Panadería Familia Ruiz',
+    tipo: 'Panadería · Repostería',
+    descripcion: 'El pan de siempre, hecho con harina de trigo local. Los roscos de anís son la memoria del pueblo en forma de masa.',
+    horario: 'L–S · 8:00–13:00',
+    img: imageLibrary.bolleriaFeatured.src,
+    alt: imageLibrary.bolleriaFeatured.alt,
+    tag: 'Producción',
+  },
+];
+
+const tagColor: Record<string, string> = {
+  'Hostelería':  'tag-lavanda',
+  'Artesanía':   'tag-tierra',
+  'Alojamiento': 'bg-musgo/10 text-musgo',
+  'Servicio':    'bg-cielo/20 text-lavanda-deep',
+  'Producción':  'bg-tierra-arena text-tierra-dark',
+};
+---
+
+<section class="section bg-crema" aria-labelledby="negocios-heading">
+  <div class="container-brand">
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-end mb-14">
+      <div class="reveal">
+        <p class="section-label mb-3">Economía local</p>
+        <h2 id="negocios-heading" class="text-heading text-carbon">
+          Quién da vida<br/>
+          <em class="not-italic text-lavanda-deep">a Arenillas</em>
+        </h2>
+      </div>
+      <div class="reveal reveal-delay-2">
+        <p class="font-sans text-base text-humo leading-relaxed mb-4">
+          Los negocios de Arenillas no son solo servicios. Son historias de personas
+          que eligieron quedarse y apostar por el pueblo.
+          Cada compra aquí es un voto a favor de la comunidad.
+        </p>
+        <a href="/negocios" class="btn-ghost">
+          Ver directorio completo
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Grid de negocios -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      {negocios.map((neg, i) => (
+        <article class={`card reveal reveal-delay-${i} group`}>
+          <!-- Imagen -->
+          <div class="aspect-[4/3] overflow-hidden bg-lavanda-pale relative">
+            <img
+              src={neg.img}
+              alt={neg.alt}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            />
+            <div class="absolute top-3 left-3">
+              <span class={`tag ${tagColor[neg.tag]}`}>{neg.tag}</span>
+            </div>
+          </div>
+
+          <!-- Contenido -->
+          <div class="p-6 flex flex-col gap-3 h-full">
+            <div>
+              <p class="font-sans text-xs text-humo tracking-wide mb-1">{neg.tipo}</p>
+              <h3 class="font-serif font-bold text-lg text-carbon group-hover:text-lavanda-deep transition-colors leading-tight">
+                {neg.nombre}
+              </h3>
+            </div>
+            <p class="font-sans text-sm text-humo leading-relaxed flex-1">{neg.descripcion}</p>
+
+            <!-- Metadatos -->
+            <div class="space-y-1.5 pt-3 border-t border-grisclaro/50">
+              {neg.horario && (
+                <p class="flex items-center gap-2 font-sans text-xs text-humo">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+                  </svg>
+                  {neg.horario}
+                </p>
+              )}
+              {neg.telefono && (
+                <a href={`tel:+34${neg.telefono.replace(/\s/g,'')}`}
+                   class="flex items-center gap-2 font-sans text-xs text-lavanda-deep hover:underline">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.15 12"/>
+                  </svg>
+                  {neg.telefono}
+                </a>
+              )}
+              {neg.instagram && (
+                <p class="flex items-center gap-2 font-sans text-xs text-humo">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/>
+                  </svg>
+                  {neg.instagram}
+                </p>
+              )}
+              {neg.href && (
+                <a href={neg.href} target="_blank" rel="noopener noreferrer"
+                   class="flex items-center gap-2 font-sans text-xs text-lavanda-deep hover:underline">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14L21 3"/>
+                  </svg>
+                  Ver web
+                </a>
+              )}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- CTA añadir negocio -->
+    <div class="mt-8 p-6 rounded-2xl border border-dashed border-lavanda-light/60 flex flex-col sm:flex-row
+                items-start sm:items-center justify-between gap-4 reveal">
+      <div>
+        <p class="font-serif font-bold text-carbon mb-1">¿Tienes un negocio en Arenillas?</p>
+        <p class="font-sans text-sm text-humo">Escríbenos y lo añadimos al directorio sin coste.</p>
+      </div>
+      <a href="/contacto?asunto=directorio-negocio" class="btn-outline shrink-0">
+        Añadir mi negocio
+      </a>
+    </div>
+
+  </div>
+</section>

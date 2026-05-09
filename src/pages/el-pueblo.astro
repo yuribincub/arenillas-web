@@ -1,0 +1,272 @@
+---
+// src/pages/el-pueblo.astro
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="El Pueblo · Arenillas, Soria"
+  description="Historia, arquitectura, comunidad y tradición. Conoce Arenillas, un pueblo de Soria con siglos de historia y una identidad única en Castilla y León."
+>
+  <!-- Page Hero -->
+  <section
+    class="relative min-h-[60vh] flex items-end bg-carbon overflow-hidden"
+  >
+    <div class="absolute inset-0">
+      <img
+        src="/images/pueblo-hero.jpg"
+        alt="Vista aérea del pueblo de Arenillas, Soria"
+        class="w-full h-full object-cover opacity-60"
+        loading="eager"
+      />
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-carbon/80 via-carbon/30 to-transparent"
+      >
+      </div>
+    </div>
+    <div class="relative z-10 container-brand pb-16 md:pb-20">
+      <p class="section-label text-lavanda-light mb-4">Arenillas · Soria</p>
+      <h1
+        class="font-serif font-bold text-crema text-balance"
+        style="font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.05;"
+      >
+        El pueblo
+      </h1>
+      <p class="font-serif italic text-xl text-lavanda-light mt-3">
+        Una historia que se escribe con calma y constancia.
+      </p>
+    </div>
+  </section>
+
+  <!-- Historia -->
+  <section
+    class="section bg-crema"
+    id="historia"
+    aria-labelledby="historia-heading"
+  >
+    <div class="container-brand">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div class="reveal">
+          <p class="section-label mb-4">Historia</p>
+          <h2 id="historia-heading" class="text-heading text-carbon mb-8">
+            Siglos de permanencia
+          </h2>
+          <div
+            class="prose prose-lg font-sans text-humo space-y-5 leading-relaxed"
+          >
+            <p>
+              Arenillas es un municipio situado en la comarca de Tierras Altas
+              de Soria, a 1.100 metros de altitud. Su nombre evoca los arenales
+              del río próximo y sus orígenes se remontan a la repoblación
+              medieval de la meseta castellana.
+            </p>
+            <p>
+              A lo largo de los siglos, el pueblo ha mantenido su carácter rural
+              con una economía basada en la ganadería, la agricultura y, de
+              forma singular, el cultivo y destilación del espliego —una
+              tradición que hoy sigue viva y forma parte esencial de la
+              identidad de Arenillas.
+            </p>
+            <p>
+              Como muchos pueblos de la España interior, el siglo XX trajo
+              consigo el éxodo rural y la reducción de la población. Pero
+              quienes eligieron quedarse construyeron algo más resistente que el
+              cemento: una comunidad unida por el orgullo de pertenecer a un
+              lugar con historia propia.
+            </p>
+            <p>
+              Hoy, Arenillas está en un momento de renacimiento tranquilo.
+              Nuevas iniciativas como el Boina Fest, el impulso al turismo rural
+              y esta misma presencia digital son señales de un pueblo que sabe
+              que su mejor argumento es ser exactamente lo que es.
+            </p>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2 space-y-6">
+          <div class="aspect-[3/4] rounded-2xl overflow-hidden bg-lavanda-pale">
+            <img
+              src="/images/pueblo-historia.jpg"
+              alt="Calle histórica de Arenillas con arquitectura de piedra"
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          <!-- Dato destacado -->
+          <div class="bg-lavanda-deep text-crema rounded-2xl p-8">
+            <p
+              class="font-sans text-xs tracking-[0.25em] uppercase text-lavanda-light mb-2"
+            >
+              Altitud
+            </p>
+            <p class="font-serif font-bold text-5xl text-crema">1.100 m</p>
+            <p class="font-sans text-sm text-crema/60 mt-2">
+              Sobre el nivel del mar · Comarca Tierras Altas · Soria
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Arquitectura -->
+  <section
+    class="section bg-lavanda-pale/40"
+    id="arquitectura"
+    aria-labelledby="arquitectura-heading"
+  >
+    <div class="container-brand">
+      <div class="max-w-2xl mb-12 reveal">
+        <p class="section-label mb-4">Patrimonio</p>
+        <h2 id="arquitectura-heading" class="text-heading text-carbon">
+          Arquitectura de piedra
+        </h2>
+        <p class="text-lead mt-4">
+          La piedra caliza local es el material con el que Arenillas ha
+          construido su memoria. Cada muro, cada dintel, cada calle empedrada
+          lleva la huella de generaciones que eligieron la permanencia.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {
+          [
+            {
+              title: "Iglesia parroquial",
+              text: "La iglesia de Arenillas preside la plaza mayor con su torre de piedra, testigo silencioso de siglos de historia comunal.",
+              img: "/images/arquitectura-iglesia.jpg",
+              alt: "Iglesia parroquial de Arenillas, Soria",
+            },
+            {
+              title: "Arquitectura popular",
+              text: "Las casas de Arenillas muestran la sabiduría constructiva castellana: muros gruesos, puertas de madera y balcones con hierro forjado.",
+              img: "/images/arquitectura-casas.jpg",
+              alt: "Casas tradicionales de piedra en Arenillas",
+            },
+            {
+              title: "Espacios comunes",
+              text: "La plaza, el lavadero, los corrales y los caminos entre campos forman el tejido urbano de un pueblo que sabe usar bien sus espacios.",
+              img: "/images/arquitectura-plaza.jpg",
+              alt: "Plaza del pueblo de Arenillas al atardecer",
+            },
+          ].map((item, i) => (
+            <article class={`card reveal reveal-delay-${i}`}>
+              <div class="aspect-[4/3] overflow-hidden bg-lavanda-pale">
+                <img
+                  src={item.img}
+                  alt={item.alt}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="p-6">
+                <h3 class="font-serif font-bold text-lg text-carbon mb-2">
+                  {item.title}
+                </h3>
+                <p class="font-sans text-sm text-humo leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Comunidad -->
+  <section
+    class="section bg-crema"
+    id="comunidad"
+    aria-labelledby="comunidad-heading"
+  >
+    <div class="container-brand">
+      <div
+        class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
+      >
+        <div class="reveal reveal-delay-1">
+          <div class="grid grid-cols-2 gap-4">
+            <div
+              class="aspect-square rounded-2xl overflow-hidden bg-lavanda-pale"
+            >
+              <img
+                src="/images/comunidad-01.jpg"
+                alt="Vecinos de Arenillas en la plaza"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="aspect-square rounded-2xl overflow-hidden bg-tierra-arena mt-8"
+            >
+              <img
+                src="/images/comunidad-02.jpg"
+                alt="Fiestas locales en Arenillas"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="col-span-2 rounded-2xl overflow-hidden bg-lavanda-pale aspect-video"
+            >
+              <img
+                src="/images/comunidad-03.jpg"
+                alt="Panorámica de Arenillas y su entorno"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="reveal">
+          <p class="section-label mb-4">Comunidad</p>
+          <h2 id="comunidad-heading" class="text-heading text-carbon mb-6">
+            El pueblo somos<br />sus personas
+          </h2>
+          <div
+            class="space-y-4 font-sans text-base text-humo leading-relaxed mb-8"
+          >
+            <p>
+              Arenillas no es solo un conjunto de edificios o un punto en el
+              mapa. Es una red de relaciones, de apellidos que se repiten en las
+              lápidas y en los bautizos, de vecinos que llevan décadas cuidando
+              un lugar en común.
+            </p>
+            <p>
+              La comunidad es lo que hace que un pueblo resista. En Arenillas,
+              esa resistencia no es pasiva: hay iniciativas culturales, hay
+              jóvenes que vuelven, hay mayores que transmiten, hay familias que
+              deciden quedarse porque aquí la vida tiene una textura que no se
+              encuentra en otro lugar.
+            </p>
+          </div>
+          <!-- Quote -->
+          <blockquote class="border-l-2 border-lavanda pl-6 py-2">
+            <p class="font-serif italic text-lg text-carbon">
+              "Pequeños en número. Inmensos en todo lo demás."
+            </p>
+            <footer
+              class="font-sans text-xs text-humo mt-2 tracking-wider uppercase"
+            >
+              — Manifiesto de Arenillas
+            </footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section-sm bg-lavanda-pale/60">
+    <div class="container-brand text-center">
+      <h2 class="font-serif font-bold text-2xl text-carbon mb-4 reveal">
+        ¿Quieres conocer el pueblo?
+      </h2>
+      <p class="font-sans text-humo mb-8 reveal reveal-delay-1">
+        Planifica tu visita o escríbenos sin compromiso.
+      </p>
+      <div class="flex flex-wrap gap-4 justify-center reveal reveal-delay-2">
+        <a href="/turismo" class="btn-primary">Ver qué hacer</a>
+        <a href="/contacto" class="btn-outline">Contactar</a>
+      </div>
+    </div>
+  </section>
+</Layout>
