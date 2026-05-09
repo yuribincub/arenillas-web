@@ -188,6 +188,14 @@ Añadir a `astro.config.mjs`:
 base: '/arenillas-web'
 ```
 
+### URL de prueba
+Usa esta sección para agregar tu URL de prueba (no es la URL oficial del proyecto):
+```text
+Test URL: https://arenilla.netlify.app
+```
+
+> Reemplaza `https://arenilla.netlify.app` con tu URL real de prueba.
+
 ---
 
 ## ♿ Accesibilidad
